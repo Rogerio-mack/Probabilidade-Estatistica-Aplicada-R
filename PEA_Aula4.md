@@ -1,7 +1,11 @@
-Distribuições de Probabilidade
-==============================
+Probabilidade e Estatística - Aula 4
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Distribuições de Probabilidade
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
@@ -13,8 +17,7 @@ distribuições de probabilidades e como empregar essas distribuições para
 fazer inferências sobre os dados. Você vai ainda aplicar esse conceitos
 em conjuntos de dados com R.
 
-Introdução
-----------
+## Introdução
 
 No capítulo anterior você aprendeu a visualizar distribuições dos dados
 empregando histrogramas e gráficos de densidade. Deve ter notado também
@@ -28,19 +31,20 @@ momento, no dia-a-dia, na escola ou no trabalho, e entender sobre essas
 distribuições permitirá você fazer *inferências* importantes sobre os
 dados como estimar um valor mais provável.
 
-Probabilidade
--------------
+## Probabilidade
 
 Imagine uma caixa com 10 bolas de bilhar, 5 vermelhas, 2 azuis e 3
 amarelas. Abaixo você pode ver representada a frequencia, isto é
 quantidade, de cada uma das cores na caixa.
 
-    barplot(c(5,2,3),
-            names.arg=c('vermelha','azul','amarela'), 
-            col=c('red','blue','yellow'))
-    title('Proporção das Bolas na Caixa pelas Quantidades (frequencia)')
+``` r
+barplot(c(5,2,3),
+        names.arg=c('vermelha','azul','amarela'), 
+        col=c('red','blue','yellow'))
+title('Proporção das Bolas na Caixa pelas Quantidades (frequencia)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 Imagine agora que você vai tirar uma bola da caixa sem olhar para bola
 que irá retirar. Qual cor você imagina será mais provável de você
@@ -51,71 +55,111 @@ quantidades) que ocorrem de cada valor, sendo o caso mais provável a cor
 que aparece em maior proporção. No caso do nosso exemplo, a
 probabilidade de você tirar cada uma das cores é dada por:
 
-$$ p(X=vermelha) = \\frac{\\text{bolas vermelhas}}{\\text{total de bolas}} = 5/10 = 0.5  $$
+  
+![ p(X=vermelha) = \\frac{\\text{bolas vermelhas}}{\\text{total de
+bolas}} = 5/10 = 0.5
+](https://latex.codecogs.com/png.latex?%20p%28X%3Dvermelha%29%20%3D%20%5Cfrac%7B%5Ctext%7Bbolas%20vermelhas%7D%7D%7B%5Ctext%7Btotal%20de%20bolas%7D%7D%20%3D%205%2F10%20%3D%200.5%20%20
+" p(X=vermelha) = \\frac{\\text{bolas vermelhas}}{\\text{total de bolas}} = 5/10 = 0.5  ")  
 
-$$ p(X=azul) = \\frac{\\text{bolas azuis}}{\\text{total de bolas}} = 2/10 = 0.2  $$
+  
+![ p(X=azul) = \\frac{\\text{bolas azuis}}{\\text{total de bolas}}
+= 2/10 = 0.2
+](https://latex.codecogs.com/png.latex?%20p%28X%3Dazul%29%20%3D%20%5Cfrac%7B%5Ctext%7Bbolas%20azuis%7D%7D%7B%5Ctext%7Btotal%20de%20bolas%7D%7D%20%3D%202%2F10%20%3D%200.2%20%20
+" p(X=azul) = \\frac{\\text{bolas azuis}}{\\text{total de bolas}} = 2/10 = 0.2  ")  
 
-$$ p(X=amarela) = \\frac{\\text{bolas amarelas}}{\\text{total de bolas}} = 3/10 = 0.3  $$
+  
+![ p(X=amarela) = \\frac{\\text{bolas amarelas}}{\\text{total de bolas}}
+= 3/10 = 0.3
+](https://latex.codecogs.com/png.latex?%20p%28X%3Damarela%29%20%3D%20%5Cfrac%7B%5Ctext%7Bbolas%20amarelas%7D%7D%7B%5Ctext%7Btotal%20de%20bolas%7D%7D%20%3D%203%2F10%20%3D%200.3%20%20
+" p(X=amarela) = \\frac{\\text{bolas amarelas}}{\\text{total de bolas}} = 3/10 = 0.3  ")  
 
 E podemos então dizer que a probabilidade de um evento, um valor
-*x*<sub>*i*</sub>, é dada por:
+![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i"), é dada por:
 
-$$ p(X=x\_i) = \\frac{\\text{nr de casos de } x\_i}{\\text{nr de todos casos possíveis}} $$
+  
+![ p(X=x\_i) = \\frac{\\text{nr de casos de } x\_i}{\\text{nr de todos
+casos possíveis}}
+](https://latex.codecogs.com/png.latex?%20p%28X%3Dx_i%29%20%3D%20%5Cfrac%7B%5Ctext%7Bnr%20de%20casos%20de%20%7D%20x_i%7D%7B%5Ctext%7Bnr%20de%20todos%20casos%20poss%C3%ADveis%7D%7D%20
+" p(X=x_i) = \\frac{\\text{nr de casos de } x_i}{\\text{nr de todos casos possíveis}} ")  
 
 Você pode notar também que a soma da probabilidade de todos os casos é
 1.
 
-*p*(*X* = *v**e**r**m**e**l**h**a*) + *p*(*X* = *a**z**u**l*) + *p*(*X* = *a**m**a**r**e**l**a*) = 0.5 + 0.3 + 0.2 = 1
+  
+![ p(X=vermelha) + p(X=azul) + p(X=amarela) = 0.5 + 0.3 + 0.2 = 1
+](https://latex.codecogs.com/png.latex?%20p%28X%3Dvermelha%29%20%2B%20p%28X%3Dazul%29%20%2B%20p%28X%3Damarela%29%20%3D%200.5%20%2B%200.3%20%2B%200.2%20%3D%201%20%20
+" p(X=vermelha) + p(X=azul) + p(X=amarela) = 0.5 + 0.3 + 0.2 = 1  ")  
 
 Este é um resultado não ocorre só para o nosso exemplo. Em qualquer caso
 a soma das probabilidades de todos eventos possíveis é 1, e podemos
 escrever isso de modo geral como:
 
-$$ \\sum\_i^n p(X=x\_i) = 1 $$
+  
+![ \\sum\_i^n p(X=x\_i) = 1
+](https://latex.codecogs.com/png.latex?%20%5Csum_i%5En%20p%28X%3Dx_i%29%20%3D%201%20
+" \\sum_i^n p(X=x_i) = 1 ")  
 
 Podemos agora, de forma semelhante ao que fizemos com as quantidades,
 representar a *proporção* ou a probabilidade de cada cor, dividindo a
 frequencia de cada cor pelo total de bolas na caixa.
 
-    barplot(c(5/10,2/10,3/10),
-            names.arg=c('vermelha','azul','amarela'), 
-            col=c('red','blue','yellow'))
-    title('Proporção das Bolas na Caixa')
+``` r
+barplot(c(5/10,2/10,3/10),
+        names.arg=c('vermelha','azul','amarela'), 
+        col=c('red','blue','yellow'))
+title('Proporção das Bolas na Caixa')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 Você acaba de descobrir uma função de probabilidades e isso vai ajudar
 você a entender as distribuições de probabilidade.
 
-Distribuições de Probabilidade
-------------------------------
+## Distribuições de Probabilidade
 
 As distribuições de probabilidade são um conceito fundamental em
 estatística. Para dados univariados, funções de distribuição de
 probabilidades fornecem um modelo de distribuição dos dados, e ela ainda
 são a base para o cálculo de intervalos de confiança e os testes de
-hipóteses, desempenhando um papel fundamental na inferência estatística,
-simulações etc.
+hipóteses, desempenhando um papel fundamental na inferência
+estatística, simulações etc.
 
 A definição matemática de uma **função de probabilidade discreta**,
-*p*(*x*), é uma função com as seguintes propriedades:
+![p(x)](https://latex.codecogs.com/png.latex?p%28x%29 "p(x)"), é uma
+função com as seguintes propriedades:
 
-1.  Fornece *p*(*x*<sub>*i*</sub>) a probabilidade de que
-    *x*<sub>*i*</sub> possa assumir um determinado valor:
+1.  Fornece ![p(x\_i)](https://latex.codecogs.com/png.latex?p%28x_i%29
+    "p(x_i)") a probabilidade de que
+    ![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i") possa
+    assumir um determinado valor:
 
-*P*\[*X* = *x*<sub>*i*</sub>\] = *p*(*x*<sub>*i*</sub>)
+  
+![ P\[ X = x\_i \] = p(x\_i)
+](https://latex.codecogs.com/png.latex?%20P%5B%20X%20%3D%20x_i%20%5D%20%3D%20p%28x_i%29%20
+" P[ X = x_i ] = p(x_i) ")  
 
-1.  *p*(*x*) é não negativo para todo valor *x*.
+2.  ![p(x)](https://latex.codecogs.com/png.latex?p%28x%29 "p(x)") é não
+    negativo para todo valor ![x](https://latex.codecogs.com/png.latex?x
+    "x").
 
-*p*(*x*<sub>*i*</sub>) ≥ 0 , para ∀*i*
+  
+![ p(x\_i) \\ge 0 \\text{ , para } \\forall
+i](https://latex.codecogs.com/png.latex?%20p%28x_i%29%20%5Cge%200%20%5Ctext%7B%20%2C%20para%20%7D%20%5Cforall%20i
+" p(x_i) \\ge 0 \\text{ , para } \\forall i")  
 
-1.  A soma de *p*(*x*) para todos os valores possíveis de
-    *x*<sub>*i*</sub> é 1
+3.  A soma de ![p(x)](https://latex.codecogs.com/png.latex?p%28x%29
+    "p(x)") para todos os valores possíveis de
+    ![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i") é 1
 
-∑<sub>*i*</sub>*p*(*x*<sub>*i*</sub>) = 1
+  
+![ \\sum\_i p(x\_i)
+= 1](https://latex.codecogs.com/png.latex?%20%5Csum_i%20p%28x_i%29%20%3D%201
+" \\sum_i p(x_i) = 1")  
 
-E como consequência de 2. e 3. temos 0 ≤ *p*(*x*<sub>*i*</sub>) ≤ 1 para
-∀*i*.
+E como consequência de 2. e 3. temos ![0 \\le p(x\_i)
+\\le 1](https://latex.codecogs.com/png.latex?0%20%5Cle%20p%28x_i%29%20%5Cle%201
+"0 \\le p(x_i) \\le 1") para ![\\forall
+i](https://latex.codecogs.com/png.latex?%5Cforall%20i "\\forall i").
 
 Pelo nosso exemplos da caixa com bolas coloridas é exatamente o que você
 esperava encontrar, não é mesmo?
@@ -126,21 +170,32 @@ exemplo, existem somente 3 casos correspondente às 3 cores na caixa. Mas
 de modo análogo podemos também **definir funções de probabilidades
 contínuas**, e com suas correspondentes distribuições.
 
-1.  
-    *P*\[*a* ≤ *x* ≤ *b*\] = ∫<sub>*a*</sub><sup>*b*</sup>*p*(*x*)
+1.    
+    ![ P\[ a \\le x \\le b \] = \\int\_a^b p(x)
+    ](https://latex.codecogs.com/png.latex?%20P%5B%20a%20%5Cle%20x%20%5Cle%20b%20%5D%20%3D%20%5Cint_a%5Eb%20p%28x%29%20
+    " P[ a \\le x \\le b ] = \\int_a^b p(x) ")  
 
-2.  
-    *p*(*x*) ≥ 0 , para ∀*x*
+2.    
+    ![ p(x) \\ge 0 \\text{ , para } \\forall
+    x](https://latex.codecogs.com/png.latex?%20p%28x%29%20%5Cge%200%20%5Ctext%7B%20%2C%20para%20%7D%20%5Cforall%20x
+    " p(x) \\ge 0 \\text{ , para } \\forall x")  
 
-3.  
-    ∫<sub> − ∞</sub><sup> + ∞</sup>*p*(*x*) = 1
+3.    
+    ![ \\int\_{-\\infty}^{+\\infty} p(x)
+    = 1](https://latex.codecogs.com/png.latex?%20%5Cint_%7B-%5Cinfty%7D%5E%7B%2B%5Cinfty%7D%20p%28x%29%20%3D%201
+    " \\int_{-\\infty}^{+\\infty} p(x) = 1")  
 
-Para essas funções *P*(*x*) podemos criar gráficos que são bastante
-úteis para entendermos os dados envolvidos. Um gráfico que exibe a
-probabilidade *P*(*X* = *x*) para cada valor de *x* é um **gráfico de
-densidade de probabilidade** e ainda é comum empregarmos um **gráfico de
-densidade de probabilidade acumulada** exibindo os valores de
-*P*(*X* ≤ *x*) para todo *x*.
+Para essas funções ![P(x)](https://latex.codecogs.com/png.latex?P%28x%29
+"P(x)") podemos criar gráficos que são bastante úteis para entendermos
+os dados envolvidos. Um gráfico que exibe a probabilidade
+![P(X=x)](https://latex.codecogs.com/png.latex?P%28X%3Dx%29 "P(X=x)")
+para cada valor de ![x](https://latex.codecogs.com/png.latex?x "x") é um
+**gráfico de densidade de probabilidade** e ainda é comum empregarmos um
+**gráfico de densidade de probabilidade acumulada** exibindo os valores
+de ![P(X \\le
+x)](https://latex.codecogs.com/png.latex?P%28X%20%5Cle%20x%29
+"P(X \\le x)") para todo ![x](https://latex.codecogs.com/png.latex?x
+"x").
 
 <br> <br>
 <img src="http://meusite.mackenzie.br/rogerio/PEA/PDF_CDF_popup_1.png" width=300, align="center">
@@ -161,19 +216,27 @@ somatória de todos os valores de probabilidade possíveis é 1, para o
 caso contínuo, $ \_{-}^{+} p(x) = 1$, isso significa que a área sob a
 curva da PDF tem valor 1.
 
-Função de Probabilidade Discreta: Distribuição Binomial
--------------------------------------------------------
+## Função de Probabilidade Discreta: Distribuição Binomial
 
 Considere que você vai jogar uma moeda e deseja saber qual a
 probabilidade de obter 7 caras ou mais em 20 lançamentos. Esses
 lançamentos de moeda seguem uma distribuição conhecida como Binomial e
 podemos empregar a fórmula:
 
-$$P(k) = \\frac{{n!}}{{k!\\left( {n - k} \\right)!}}p^k (1 - p)^{n - k} = \\left( {\\begin{array}{\*{20}c} n \\\\ k \\\\ \\end{array}} \\right)p^k (1 - p)^{n - k}$$
+  
+![P(k) = \\frac{{n\!}}{{k\!\\left( {n - k} \\right)\!}}p^k (1 - p)^{n -
+k} = \\left( {\\begin{array}{\*{20}c} n \\\\ k \\\\ \\end{array}}
+\\right)p^k (1 - p)^{n -
+k}](https://latex.codecogs.com/png.latex?P%28k%29%20%3D%20%5Cfrac%7B%7Bn%21%7D%7D%7B%7Bk%21%5Cleft%28%20%7Bn%20-%20k%7D%20%5Cright%29%21%7D%7Dp%5Ek%20%281%20-%20p%29%5E%7Bn%20-%20k%7D%20%3D%20%5Cleft%28%20%7B%5Cbegin%7Barray%7D%7B%2A%7B20%7Dc%7D%20n%20%5C%5C%20k%20%5C%5C%20%5Cend%7Barray%7D%7D%20%5Cright%29p%5Ek%20%281%20-%20p%29%5E%7Bn%20-%20k%7D
+"P(k) = \\frac{{n!}}{{k!\\left( {n - k} \\right)!}}p^k (1 - p)^{n - k} = \\left( {\\begin{array}{*{20}c} n \\\\ k \\\\ \\end{array}} \\right)p^k (1 - p)^{n - k}")  
 
-para calcular a probabilidade *p*(7) de até 7 caras, onde *p* é a
-probabilidade de se obter cara (0.5 se a moeda é não viciada) e *n* o
-número de lançamentos.
+para calcular a probabilidade
+![p(7)](https://latex.codecogs.com/png.latex?p%287%29 "p(7)") de até 7
+caras, onde ![p](https://latex.codecogs.com/png.latex?p "p") é a
+probabilidade de se obter cara
+(![0.5](https://latex.codecogs.com/png.latex?0.5 "0.5") se a moeda é não
+viciada) e ![n](https://latex.codecogs.com/png.latex?n "n") o número de
+lançamentos.
 
 Você não precisa se preocupar compreender completamente essa função
 agora, mesmo por quê empregaremos o R para fazer esses cálculos para
@@ -186,28 +249,30 @@ compreendê-las melhor.
 Podemos então construir os gráficos PDF e CDF dessa distribuição e isso
 ajudará você a compreender e explorar esse problema.
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    prob = c(0)
+prob = c(0)
 
-    pmf <- function(k, n, p){
-      return ( factorial(n) / ( ( factorial(k) * factorial(n - k) ) ) * p**k * (1-p)**(n-k) )
-    }
+pmf <- function(k, n, p){
+  return ( factorial(n) / ( ( factorial(k) * factorial(n - k) ) ) * p**k * (1-p)**(n-k) )
+}
 
-    for (k in c(0:n)){
-      prob[k+1] = pmf(k, n, p)
-    }
+for (k in c(0:n)){
+  prob[k+1] = pmf(k, n, p)
+}
 
-    barplot(prob,
-            names.arg = seq(0,n,1),
-            xlab = 'Quantidade de Caras',
-            ylab = 'Função Densidade de Probabilidade',
-            col='lightblue',
-            cex.names = 0.8)  
-    title('PDF, Binom(n=20, p=0.5)')
+barplot(prob,
+        names.arg = seq(0,n,1),
+        xlab = 'Quantidade de Caras',
+        ylab = 'Função Densidade de Probabilidade',
+        col='lightblue',
+        cex.names = 0.8)  
+title('PDF, Binom(n=20, p=0.5)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 O gráfico acima exibe a função de densidade de probabilidade, isto é, a
 probabilidade de obtermos **até** um determinado número de caras ao
@@ -229,24 +294,26 @@ Veja `help('pbinom')`.
 
 Assim, podemos reescrever o código acima como:
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    prob = c(0)
+prob = c(0)
 
-    for (k in c(0:n)){
-      prob[k+1] = dbinom(k, n, p)
-    }
+for (k in c(0:n)){
+  prob[k+1] = dbinom(k, n, p)
+}
 
-    barplot(prob,
-            names.arg = seq(0,n,1),
-            xlab = 'Quantidade de Caras',
-            ylab = 'Função Densidade de Probabilidade',
-            col='lightblue',
-            cex.names = 0.8)  
-    title('PDF, Binom(n=20, p=0.5)')
+barplot(prob,
+        names.arg = seq(0,n,1),
+        xlab = 'Quantidade de Caras',
+        ylab = 'Função Densidade de Probabilidade',
+        col='lightblue',
+        cex.names = 0.8)  
+title('PDF, Binom(n=20, p=0.5)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 E você verá que outras distribuições a função de **d**istribuição de
 probabilidades também será **d**<nome-da-distribuição>, por exemplo
@@ -259,39 +326,46 @@ ou ‘soma’ das barras até o valor 7. De fato, você verá mais adiante, que
 nas distribuições contínuas podemos calcular essa área para obtermos as
 probabilidades.
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    prob = c(0)
+prob = c(0)
 
-    for (k in c(0:n)){
-      prob[k+1] = dbinom(k, n, p)
-    }
+for (k in c(0:n)){
+  prob[k+1] = dbinom(k, n, p)
+}
 
-    barplot(prob,
-            names.arg = seq(0,n,1),
-            xlab = 'Quantidade de Caras',
-            ylab = 'Função Densidade de Probabilidade',
-            col=c( rep('green',8) , rep('lightblue',n-8) ),
-            cex.names = 0.8)  
-    title('PDF, Binom(n=20, p=0.5)')
+barplot(prob,
+        names.arg = seq(0,n,1),
+        xlab = 'Quantidade de Caras',
+        ylab = 'Função Densidade de Probabilidade',
+        col=c( rep('green',8) , rep('lightblue',n-8) ),
+        cex.names = 0.8)  
+title('PDF, Binom(n=20, p=0.5)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 Assim, podemos calcular:
 
-*P*(*k* ≤ 7) = *P*(*k* = 0) + *P*(*k* = 1) + ... + *P*(*k* = 7) = 0.131588
+  
+![P(k \\le 7) = P(k=0) + P(k=1) + ... + P(k=7)
+= 0.131588](https://latex.codecogs.com/png.latex?P%28k%20%5Cle%207%29%20%3D%20P%28k%3D0%29%20%2B%20P%28k%3D1%29%20%2B%20...%20%2B%20P%28k%3D7%29%20%3D%200.131588
+"P(k \\le 7) = P(k=0) + P(k=1) + ... + P(k=7) = 0.131588")  
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    p7 = 0 
+p7 = 0 
 
-    for (k in c(0:7)){
-      p7 = p7 + dbinom(k, n, p)
-    }
+for (k in c(0:7)){
+  p7 = p7 + dbinom(k, n, p)
+}
 
-    print(p7)
+print(p7)
+```
 
     ## [1] 0.131588
 
@@ -300,54 +374,66 @@ entre 7 e 9 caras nos lançamentos basta obter a ‘soma’ (equivalente à
 área sob a curva em uma distribuição contínua) sob o gráfico entre os
 valores 7 e 9. E assim, obtemos:
 
-*P*(7 ≤ *k* ≤ 9) = *P*(*k* = 7) + *P*(*k* = 8) + *P*(*k* = 9) = 0.3542...
+  
+![P(7 \\le k \\le 9) = P(k=7) + P(k=8) + P(k=9)
+= 0.3542...](https://latex.codecogs.com/png.latex?P%287%20%5Cle%20k%20%5Cle%209%29%20%3D%20P%28k%3D7%29%20%2B%20P%28k%3D8%29%20%2B%20P%28k%3D9%29%20%3D%200.3542...
+"P(7 \\le k \\le 9) = P(k=7) + P(k=8) + P(k=9) = 0.3542...")  
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    # Este código, está correto, mas em R podemos substituir por uma única linha
-    # pois as operações são aplicadas a todo um vetor
-    #-------------------------------------------------------------------------------
-    # prob = c(0)
+# Este código, está correto, mas em R podemos substituir por uma única linha
+# pois as operações são aplicadas a todo um vetor
+#-------------------------------------------------------------------------------
+# prob = c(0)
 
-    # for (k in c(0:n)){
-    #   prob[k+1] = dbinom(k, n, p)
-    # }
+# for (k in c(0:n)){
+#   prob[k+1] = dbinom(k, n, p)
+# }
 
-    # Assim, agora que você já entendeu o que estamos fazendo, podemos empregar
-    # para obter os valores de dbinom para os valores de c(0:n):
-    #-------------------------------------------------------------------------------
-    prob = dbinom(c(0:n), n, p)
+# Assim, agora que você já entendeu o que estamos fazendo, podemos empregar
+# para obter os valores de dbinom para os valores de c(0:n):
+#-------------------------------------------------------------------------------
+prob = dbinom(c(0:n), n, p)
 
-    # e empregaremos esse modo daqui para diante
+# e empregaremos esse modo daqui para diante
 
-    p7_9 = 0 
+p7_9 = 0 
 
-    for (k in c(7,8,9)){
-      p7_9 = p7_9 + dbinom(k, n, p)
-    }
+for (k in c(7,8,9)){
+  p7_9 = p7_9 + dbinom(k, n, p)
+}
 
-    barplot(prob,
-            names.arg = seq(0,n,1),
-            xlab = 'Quantidade de Caras',
-            ylab = 'Função Densidade de Probabilidade',
-            col=c( rep('lightblue',7) , rep('green',10-7),  rep('lightblue',n-10) ),
-            cex.names = 0.8)  
-    title('PDF, Binom(n=20, p=0.5)')
-    text(20,0.1,p7_9)
+barplot(prob,
+        names.arg = seq(0,n,1),
+        xlab = 'Quantidade de Caras',
+        ylab = 'Função Densidade de Probabilidade',
+        col=c( rep('lightblue',7) , rep('green',10-7),  rep('lightblue',n-10) ),
+        cex.names = 0.8)  
+title('PDF, Binom(n=20, p=0.5)')
+text(20,0.1,p7_9)
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 o gráfico acima empregamos o **gráfico de densidade de probabilidade**
-com valores de *P*(*X* = *x*), mas como você notou a soma de várias
-probabilidades
-*P*(*X* = *x*<sub>1</sub>) + *P*(*X* = *x*<sub>2</sub>) + ... + *P*(*X* = *x*<sub>*n*</sub>)
-parece ser bastante útil e por isso uma outra forma de representarmos
-essas probabilidades é empregar um **gráfico de densidade de
-probabilidade acumulada** exibindo os valores de *P*(*X* ≤ *x*) para
-todo *x*. Assim o gráfico fornece na posição 7 exatamente o valor de
-$P(X 7) $, isto é, a probabilidade acumulada
-*P*(*X* ≤ 7) = *P*(*x* = 0) + *P*(*x* = 1) + ... + *P*(*x* = 7).
+com valores de ![P(X =
+x)](https://latex.codecogs.com/png.latex?P%28X%20%3D%20x%29 "P(X = x)"),
+mas como você notou a soma de várias probabilidades ![P(X = x\_1) + P(X
+= x\_2) + ... + P(X =
+x\_n)](https://latex.codecogs.com/png.latex?P%28X%20%3D%20x_1%29%20%2B%20P%28X%20%3D%20x_2%29%20%2B%20...%20%2B%20P%28X%20%3D%20x_n%29
+"P(X = x_1) + P(X = x_2) + ... + P(X = x_n)") parece ser bastante útil e
+por isso uma outra forma de representarmos essas probabilidades é
+empregar um **gráfico de densidade de probabilidade acumulada** exibindo
+os valores de ![P(X \\le
+x)](https://latex.codecogs.com/png.latex?P%28X%20%5Cle%20x%29
+"P(X \\le x)") para todo ![x](https://latex.codecogs.com/png.latex?x
+"x"). Assim o gráfico fornece na posição 7 exatamente o valor de $P(X 7)
+$, isto é, a probabilidade acumulada ![P(X \\le 7) = P(x=0) + P(x=1) +
+... +
+P(x=7)](https://latex.codecogs.com/png.latex?P%28X%20%5Cle%207%29%20%3D%20P%28x%3D0%29%20%2B%20P%28x%3D1%29%20%2B%20...%20%2B%20P%28x%3D7%29
+"P(X \\le 7) = P(x=0) + P(x=1) + ... + P(x=7)").
 
 Assim como para funções de distribuição, o R também fornece a função de
 Função de Probabilidade Acumulada para várias distribuições e, para a
@@ -363,38 +449,48 @@ distribuição normal.
 
 Assim, podemos obter o gráfico de Probabilidade Acumulada:
 
-    n = 20
-    p = 0.5
+``` r
+n = 20
+p = 0.5
 
-    prob = pbinom(c(0:n), n, p)
+prob = pbinom(c(0:n), n, p)
 
-    barplot(prob,
-            names.arg = seq(0,n,1),
-            xlab = 'Quantidade de Caras',
-            ylab = 'Função de Probabilidade Acumulada',
-            col='lightblue',
-            cex.names = 0.8)  
-    title('CDF, Binom(n=20, p=0.5)')
+barplot(prob,
+        names.arg = seq(0,n,1),
+        xlab = 'Quantidade de Caras',
+        ylab = 'Função de Probabilidade Acumulada',
+        col='lightblue',
+        cex.names = 0.8)  
+title('CDF, Binom(n=20, p=0.5)')
 
-    text(4,pbinom(7, n, p)+0.1,round(pbinom(7, n, p),4))
-    abline(h=pbinom(7, n, p),col='red',lty='dotted',lwd=1.5) 
-    abline(v=7+2,col='red',lty='dotted',lwd=1.5)
+text(4,pbinom(7, n, p)+0.1,round(pbinom(7, n, p),4))
+abline(h=pbinom(7, n, p),col='red',lty='dotted',lwd=1.5) 
+abline(v=7+2,col='red',lty='dotted',lwd=1.5)
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 A função de probabilidade acumulada permite então obter diretamente a
-probabilidade de até 7 caras *P*(*x* ≤ 7). Assim o cálculo é diretamente
-obtido:
+probabilidade de até 7 caras ![P(x
+\\le 7)](https://latex.codecogs.com/png.latex?P%28x%20%5Cle%207%29
+"P(x \\le 7)"). Assim o cálculo é diretamente obtido:
 
-    pbinom(7, n, p)
+``` r
+pbinom(7, n, p)
+```
 
     ## [1] 0.131588
 
 E ainda podemos obter a probabilidade de termos exatos 7 a 9 caras:
 
-*P*(7 ≤ *x* ≤ 9) = *P*(*x* ≤ 9) − *P*(*x* ≤ 6) = 0.3542...
+  
+![ P(7 \\le x \\le 9) = P(x \\le 9) - P(x \\le 6)
+= 0.3542...](https://latex.codecogs.com/png.latex?%20P%287%20%5Cle%20x%20%5Cle%209%29%20%3D%20P%28x%20%5Cle%209%29%20-%20P%28x%20%5Cle%206%29%20%3D%200.3542...
+" P(7 \\le x \\le 9) = P(x \\le 9) - P(x \\le 6) = 0.3542...")  
 
-    pbinom(9, n, p) - pbinom(6, n, p)
+``` r
+pbinom(9, n, p) - pbinom(6, n, p)
+```
 
     ## [1] 0.3542423
 
@@ -408,8 +504,7 @@ meses, obtendo a probabilidade de ser necessário mais de 5 correções de
 programas de software a cada lote 100 desenvolvidos por uma fábrica de
 software que apresenta em média 5% de retrabalho com esse fornecedor.
 
-Função de Probabilidade Contínua: Distribuição Normal
------------------------------------------------------
+## Função de Probabilidade Contínua: Distribuição Normal
 
 Também bastante comum é a correspondente contínua da distribuição
 binomial, a distribuição normal. Essa distribuição é bastante popular e
@@ -422,7 +517,7 @@ engenharia, podemos usar o termo Gaussiana). Você poderia, então,
 empregar isso para definir as melhores quantidades de cada número de
 sapato ou de tamanhos de camisa a serem fabricados, uma vez que a
 procura desses produtos depende das medidas das pessoas que vão adquirir
-esses produtos (e de fato é em geral assim que é feito!). Mas não são
+esses produtos (e de fato é em geral assim que é feito\!). Mas não são
 somente medidas do ser humano que seguem essa distribuição e podemos
 também encontrar essa mesma distribuição no peso de sementes na
 agricultura, notas nos resultados do vestibular ou de um concurso,
@@ -436,12 +531,21 @@ e altura de uma pessoa, ou o peso de um recém nascido, pode assumir
 quaisquer valores em um intervalo contínuo. Por exemplo, medindo-se o
 peso de vários bebês recém nascidos você deve encontrar uma média em
 tôrno de 3Kg, mas pode encontrar *qualquer* valor em torno dessa média,
-por exemplo no intervalo \[0.8, 6.0\], e não é difícil imaginar que
-valores cada vez maiores (ou menores) sejam cada vez menos prováveis.
+por exemplo no intervalo ![\[0.8
+, 6.0\]](https://latex.codecogs.com/png.latex?%5B0.8%20%2C%206.0%5D
+"[0.8 , 6.0]"), e não é difícil imaginar que valores cada vez maiores
+(ou menores) sejam cada vez menos prováveis.
 
-$$P(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}e^{ - ( x - \\mu )^2  / {2\\sigma ^2}}$$
+  
+![P(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}e^{ - ( x - \\mu )^2 /
+{2\\sigma
+^2}}](https://latex.codecogs.com/png.latex?P%28x%29%20%3D%20%5Cfrac%7B1%7D%7B%5Csigma%20%5Csqrt%7B2%5Cpi%7D%7De%5E%7B%20-%20%28%20x%20-%20%5Cmu%20%29%5E2%20%20%2F%20%7B2%5Csigma%20%5E2%7D%7D
+"P(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}e^{ - ( x - \\mu )^2  / {2\\sigma ^2}}")  
 
-onde *μ* é a média da população e *σ* o desvio padrão.
+onde ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu "\\mu") é a
+média da população e
+![\\sigma](https://latex.codecogs.com/png.latex?%5Csigma "\\sigma") o
+desvio padrão.
 
 Da mesma forma que antes, não é importante que você compreenda essa
 fórmula agora e você aprenderá como empregar o R para fazer esses
@@ -456,24 +560,26 @@ padrão de 1Kg, empregamos isso para gerar uma amostra hipotética de peso
 de 100 bebês com uma distribuição normal e comparar isso à distribuição
 normal ideal.
 
-    set.seed(seed=1234) # fixa a semente de geração aleatória
+``` r
+set.seed(seed=1234) # fixa a semente de geração aleatória
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    valores = rnorm(n=100,mean=mu,sd=sigma)  
+valores = rnorm(n=100,mean=mu,sd=sigma)  
 
-    hist(valores, breaks=20, freq=FALSE, col='lightblue', 
-          main = 'PDF, N(mu=3, sigma=1)',
-          xlab = 'Peso dos Recém Nascidos',
-          ylab = 'Função Densidade de Probabilidade')
+hist(valores, breaks=20, freq=FALSE, col='lightblue', 
+      main = 'PDF, N(mu=3, sigma=1)',
+      xlab = 'Peso dos Recém Nascidos',
+      ylab = 'Função Densidade de Probabilidade')
 
-    # add a 'best fit' line
-    y = ((1 / (sqrt(2 * pi) * sigma)) *
-         exp(-0.5 * (1 / sigma * (seq(0,6,0.05) - mu))**2))
-    lines(seq(0,6,0.05), y, col='red',lty='dashed',lwd=1.5)
+# add a 'best fit' line
+y = ((1 / (sqrt(2 * pi) * sigma)) *
+     exp(-0.5 * (1 / sigma * (seq(0,6,0.05) - mu))**2))
+lines(seq(0,6,0.05), y, col='red',lty='dashed',lwd=1.5)
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 A função,
 
@@ -501,71 +607,77 @@ diferentes. Enquanto, no caso discreto, a distribuição binomial tinha
 parâmetros como a quantidade de eventos e sua probabilidade, a
 distribuição normal tem como parâmetros a média e o desvio padrão.
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    prob = dnorm(seq(0,6,0.05), mean=mu, sd=sigma)
+prob = dnorm(seq(0,6,0.05), mean=mu, sd=sigma)
 
-    barplot(prob,
-            names.arg = seq(0,6,0.05),
-            xlab = 'Peso dos Recém Nascidos',
-            ylab = 'Função Densidade de Probabilidade',
-            col='lightblue')
-    title('PDF, Norm(mean=3,sd=1)')
+barplot(prob,
+        names.arg = seq(0,6,0.05),
+        xlab = 'Peso dos Recém Nascidos',
+        ylab = 'Função Densidade de Probabilidade',
+        col='lightblue')
+title('PDF, Norm(mean=3,sd=1)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 Mas sendo valores contínuos é mais adequado neste caso empregarmos a
 função `plot()` no lugar de um histograma.
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    prob = dnorm(seq(0,6,0.05), mean=mu, sd=sigma)
+prob = dnorm(seq(0,6,0.05), mean=mu, sd=sigma)
 
-    plot(seq(0,6,0.05),
-            prob,
-            type='l',
-            xlab = 'Peso dos Recém Nascidos',
-            ylab = 'Função Densidade de Probabilidade',
-            col='darkblue')
-    title('PDF, Norm(mean=3,sd=1)')
+plot(seq(0,6,0.05),
+        prob,
+        type='l',
+        xlab = 'Peso dos Recém Nascidos',
+        ylab = 'Função Densidade de Probabilidade',
+        col='darkblue')
+title('PDF, Norm(mean=3,sd=1)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-14-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 Agora, de forma análoga ao caso discreto, a área sob o gráfico da PDF
 pode ser empregada para o cálculo da probabilidade de um evento e você
 pode obter a probabilidade de nascimento de um bebê de até 2kg obtendo a
 área sob a curva até o valor 2.
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    x =seq(0,6,0.05)
-    prob = dnorm(x, mean=mu, sd=sigma)
+x =seq(0,6,0.05)
+prob = dnorm(x, mean=mu, sd=sigma)
 
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Peso dos Recém Nascidos',
-         ylab = 'Função Densidade de Probabilidade',
-         col='darkblue')
-    title('PDF, Norm(mean=3,sd=1)')
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Peso dos Recém Nascidos',
+     ylab = 'Função Densidade de Probabilidade',
+     col='darkblue')
+title('PDF, Norm(mean=3,sd=1)')
 
-    lb = 0 # limite inferior
-    ub = 2 # limite superior
+lb = 0 # limite inferior
+ub = 2 # limite superior
 
-    i <- x >= lb & x <= ub
-    lines(x, prob)                                       # desenha as linhas limite
-    polygon(c(lb,x[i],ub), c(0,prob[i],0), col="green")  # preenche a área sob a curva
+i <- x >= lb & x <= ub
+lines(x, prob)                                       # desenha as linhas limite
+polygon(c(lb,x[i],ub), c(0,prob[i],0), col="green")  # preenche a área sob a curva
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 O cálculo dessa área não é tão simples quanto a soma dos valores das
 probabilidades discretas que fizemos anteriormente. Mas você pode lançar
@@ -577,201 +689,223 @@ função **p**<nome-da-distribuição>:
 fornece o valor da função de probabilidade acumulada e podemos então
 calcular,
 
-*P*(*x* ≤ 2) = 0.1586
+  
+![P( x \\le 2)
+= 0.1586](https://latex.codecogs.com/png.latex?P%28%20x%20%5Cle%202%29%20%3D%200.1586
+"P( x \\le 2) = 0.1586")  
 para uma distribuição normal com média 3 e desvio padrão 1:
 
-    pnorm(2,mean=3,sd=1)
+``` r
+pnorm(2,mean=3,sd=1)
+```
 
     ## [1] 0.1586553
 
 E também construir o gráfico de CDF correspondente:
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    x =seq(0,6,0.05)
-    prob = pnorm(x, mean=mu, sd=sigma)
+x =seq(0,6,0.05)
+prob = pnorm(x, mean=mu, sd=sigma)
 
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Peso dos Recém Nascidos',
-         ylab = 'Função Densidade de Probabilidade',
-         col='darkblue')
-    title('PDF, Norm(mean=3,sd=1)')
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Peso dos Recém Nascidos',
+     ylab = 'Função Densidade de Probabilidade',
+     col='darkblue')
+title('PDF, Norm(mean=3,sd=1)')
 
-    text(4,pnorm(2,mean=3,sd=1)+0.1,round(pnorm(2,mean=3,sd=1),4))
+text(4,pnorm(2,mean=3,sd=1)+0.1,round(pnorm(2,mean=3,sd=1),4))
 
-    abline(h=pnorm(2,mean=3,sd=1),col='red',lty='dotted',lwd=1.5) 
-    abline(v=2,col='red',lty='dotted',lwd=1.5)
+abline(h=pnorm(2,mean=3,sd=1),col='red',lty='dotted',lwd=1.5) 
+abline(v=2,col='red',lty='dotted',lwd=1.5)
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-17-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 Como no caso discreto podemos também calcular a probabilidade de
 intervalos, como a probabilidade de que o recém nascido tenha exatamente
 entre 2.5 e 4.0kg.
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 3
-    sigma = 1
+mu = 3
+sigma = 1
 
-    x =seq(0,6,0.05)
-    prob = dnorm(x, mean=mu, sd=sigma)
+x =seq(0,6,0.05)
+prob = dnorm(x, mean=mu, sd=sigma)
 
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Peso dos Recém Nascidos',
-         ylab = 'Função Densidade de Probabilidade',
-         col='darkblue')
-    title('PDF, Norm(mean=3,sd=1)')
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Peso dos Recém Nascidos',
+     ylab = 'Função Densidade de Probabilidade',
+     col='darkblue')
+title('PDF, Norm(mean=3,sd=1)')
 
-    lb = 2.5 # limite inferior
-    ub = 4 # limite superior
+lb = 2.5 # limite inferior
+ub = 4 # limite superior
 
-    i <- x >= lb & x <= ub
-    lines(x, prob)                                       # desenha as linhas limite
-    polygon(c(lb,x[i],ub), c(0,prob[i],0), col="green")  # preenche a área sob a curva
+i <- x >= lb & x <= ub
+lines(x, prob)                                       # desenha as linhas limite
+polygon(c(lb,x[i],ub), c(0,prob[i],0), col="green")  # preenche a área sob a curva
 
-    p_intervalo = pnorm(4,mean=3,sd=1) - pnorm(2.5,mean=3,sd=1)
-    text(3.2,0.2, round(p_intervalo,4))
+p_intervalo = pnorm(4,mean=3,sd=1) - pnorm(2.5,mean=3,sd=1)
+text(3.2,0.2, round(p_intervalo,4))
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-18-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
-*P*(2.5 ≤ *x* ≤ 4) = *P*(*x* ≤ 4) − *P*(*x* ≤ 2.5) = 0.5328
+  
+![ P(2.5 \\le x \\le 4) = P(x \\le 4) - P(x \\le 2.5)
+= 0.5328](https://latex.codecogs.com/png.latex?%20P%282.5%20%5Cle%20x%20%5Cle%204%29%20%3D%20P%28x%20%5Cle%204%29%20-%20P%28x%20%5Cle%202.5%29%20%3D%200.5328
+" P(2.5 \\le x \\le 4) = P(x \\le 4) - P(x \\le 2.5) = 0.5328")  
 
-    pnorm(4,mean=3,sd=1) - pnorm(2.5,mean=3,sd=1)
+``` r
+pnorm(4,mean=3,sd=1) - pnorm(2.5,mean=3,sd=1)
+```
 
     ## [1] 0.5328072
 
-PDF, CDF e ICDF
----------------
+## PDF, CDF e ICDF
 
 Há ainda uma outra função importante. A ICDF é a função de distribuição
 acumulada inversa e dá o valor associado a uma certa probabilidade
 acumulada. Pegue o exemplo anterior, com 0.15 de chance (probabilidade)
 até que peso podemos esperar dos bebês?
 
-    qnorm(0.15,mean=3,sd=1)
+``` r
+qnorm(0.15,mean=3,sd=1)
+```
 
     ## [1] 1.963567
 
 Não é surpresa que o valor é bastante próximo do peso de 2Kg já que essa
 é a probabilidade de crianças até 2Kg que obtivemos foi:
 
-    pnorm(2,mean=3,sd=1)
+``` r
+pnorm(2,mean=3,sd=1)
+```
 
     ## [1] 0.1586553
 
 E podemos ainda fazer para obter o valor exato:
 
-    qnorm( pnorm(2,mean=3,sd=1) ,mean=3,sd=1)
+``` r
+qnorm( pnorm(2,mean=3,sd=1) ,mean=3,sd=1)
+```
 
     ## [1] 2
 
 Podemos também construir um gráfico da ICDF e resumir as funções que
 empregamos até aqui nos seguintes programas:
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 0           # Aqui empregaremos média 0
-    sigma = 1
+mu = 0           # Aqui empregaremos média 0
+sigma = 1
 
-    x = seq(mu - 3.5*sigma,mu + 3.5*sigma,0.05)
+x = seq(mu - 3.5*sigma,mu + 3.5*sigma,0.05)
 
-    par(mfrow = c(1, 3))
+par(mfrow = c(1, 3))
 
-    prob = dnorm(x, mean=mu, sd=sigma)
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Valor',
-         ylab = 'Função Densidade de Probabilidade',
-         col='darkblue')
-    title('PDF, Norm(mean=0,sd=1)')
+prob = dnorm(x, mean=mu, sd=sigma)
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Valor',
+     ylab = 'Função Densidade de Probabilidade',
+     col='darkblue')
+title('PDF, Norm(mean=0,sd=1)')
 
-    prob = pnorm(x, mean=mu, sd=sigma)
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Valor',
-         ylab = 'Função Probabilidade Acumulada',
-         col='darkblue')
-    title('CDF, Norm(mean=0,sd=1)')
+prob = pnorm(x, mean=mu, sd=sigma)
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Valor',
+     ylab = 'Função Probabilidade Acumulada',
+     col='darkblue')
+title('CDF, Norm(mean=0,sd=1)')
 
-    prob = seq(0,1,0.05)
-    valor = qnorm(prob, mean=mu, sd=sigma)
-    plot(prob,
-         valor,
-         type='l',
-         ylab = 'Valor',
-         xlab = 'Probabilidade Acumulada Inversa',
-         col='darkblue')
-    title('ICDF, Norm(mean=0,sd=1)')
+prob = seq(0,1,0.05)
+valor = qnorm(prob, mean=mu, sd=sigma)
+plot(prob,
+     valor,
+     type='l',
+     ylab = 'Valor',
+     xlab = 'Probabilidade Acumulada Inversa',
+     col='darkblue')
+title('ICDF, Norm(mean=0,sd=1)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-23-1.png) Ou
-para o caso discreto,
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-23-1.png)<!-- --> Ou para o
+caso discreto,
 
-    n = 50           # Aqui com 50 lançamentos
-    p = 0.5
+``` r
+n = 50           # Aqui com 50 lançamentos
+p = 0.5
 
-    prob = c(0)
+prob = c(0)
 
-    par(mfrow = c(1, 3))
+par(mfrow = c(1, 3))
 
-    x = c(0:n)
-    prob = dbinom(x, n, p)
+x = c(0:n)
+prob = dbinom(x, n, p)
 
-    barplot(prob,
-            names.arg = x,
-            xlab = 'Valor',
-            ylab = 'Função Densidade de Probabilidade',
-            col='lightblue',
-            cex.names = 0.8)  
-    title('PDF, Binom(n=50,p=0.5)')
+barplot(prob,
+        names.arg = x,
+        xlab = 'Valor',
+        ylab = 'Função Densidade de Probabilidade',
+        col='lightblue',
+        cex.names = 0.8)  
+title('PDF, Binom(n=50,p=0.5)')
 
-    x = c(0:n)
-    prob = pbinom(x, n, p)
+x = c(0:n)
+prob = pbinom(x, n, p)
 
-    barplot(prob,
-            names.arg = x,
-            xlab = 'Valor',
-            ylab = 'Função Probabilidade Acumulada',
-            col='lightblue',
-            cex.names = 0.8)  
-    title('CDF, Binom(n=50,p=0.5)')
+barplot(prob,
+        names.arg = x,
+        xlab = 'Valor',
+        ylab = 'Função Probabilidade Acumulada',
+        col='lightblue',
+        cex.names = 0.8)  
+title('CDF, Binom(n=50,p=0.5)')
 
-    prob = seq(0,1,0.05)
-    valor = qbinom(prob, n, p)
+prob = seq(0,1,0.05)
+valor = qbinom(prob, n, p)
 
-    plot(prob,
-         valor,
-         type='l',
-         ylab = 'Valor',
-         xlab = 'Probabilidade Acumulada Inversa',
-         col='darkblue')
-    title('ICDF, Binom(n=50,p=0.5)')
+plot(prob,
+     valor,
+     type='l',
+     ylab = 'Valor',
+     xlab = 'Probabilidade Acumulada Inversa',
+     col='darkblue')
+title('ICDF, Binom(n=50,p=0.5)')
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-24-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
-Resumo das Funções de Probabilidade em R
-----------------------------------------
+## Resumo das Funções de Probabilidade em R
 
 Como vimos você encontra funções equivalentes em R para:
 
--   Funções (de Densidade) de Probabilidade
--   Funções de Probabilidade Acumulada
--   Geração aleatória de valores
+  - Funções (de Densidade) de Probabilidade
+  - Funções de Probabilidade Acumulada
+  - Geração aleatória de valores
 
 para as distribuições binomial e normal:
 
     dbinom(x, size, prob, log = FALSE)
     pbinom(q, size, prob, lower.tail = TRUE, log.p = FALSE)
     rbinom(n, size, prob)
-
+    
     dnorm(x, mean = 0, sd = 1, log = FALSE)
     pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
     rnorm(n, mean = 0, sd = 1)
@@ -782,97 +916,190 @@ variável para uma determinada probabilidade) e que veremos mais adiante.
 O quadro abaixo resume essas funções e as principais distribuições.
 
 <h4>
+
 Table 1:Funções de Distribuição de Probabilidade em R
+
 </h4>
+
 <table>
+
 <thead>
+
 <tr class="header">
+
 <th align="left">
+
 Name
+
 </th>
+
 <th align="left">
+
 Probability Density
+
 </th>
+
 <th align="left">
+
 Cumulative Distribution
+
 </th>
+
 <th align="left">
+
 Quantile
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr class="odd">
+
 <td align="left">
+
 Normal
+
 </td>
+
 <td align="left">
+
 dnorm(Z,mean,sd)
+
 </td>
+
 <td align="left">
+
 pnorm(Z,mean,sd)
+
 </td>
+
 <td align="left">
+
 qnorm(Q,mean,sd)
+
 </td>
+
 </tr>
+
 <tr class="even">
+
 <td align="left">
+
 Poisson
+
 </td>
+
 <td align="left">
+
 dpois(N,lambda)
+
 </td>
+
 <td align="left">
+
 ppois(N,lambda)
+
 </td>
+
 <td align="left">
+
 qpois(Q,lambda)
+
 </td>
+
 </tr>
+
 <tr class="odd">
+
 <td align="left">
+
 Binomial
+
 </td>
+
 <td align="left">
+
 dbinom(N,size,prob)
+
 </td>
+
 <td align="left">
+
 pbinom(N,size,prob)
+
 </td>
+
 <td align="left">
+
 qbinom(Q,size,prob)
+
 </td>
+
 </tr>
+
 <tr class="even">
+
 <td align="left">
+
 Exponential
+
 </td>
+
 <td align="left">
+
 dexp(N,rate)
+
 </td>
+
 <td align="left">
+
 pexp(N,rate)
+
 </td>
+
 <td align="left">
+
 qexp(Q,rate)
+
 </td>
+
 </tr>
+
 <tr class="odd">
+
 <td align="left">
-<span class="math">*χ*<sup>2</sup></span>
+
+<span class="math">![\\chi^2](https://latex.codecogs.com/png.latex?%5Cchi%5E2
+"\\chi^2")</span>
+
 </td>
+
 <td align="left">
+
 dchisq(X,df)
+
 </td>
+
 <td align="left">
+
 pchisq(X.df)
+
 </td>
+
 <td align="left">
+
 qchisq(X,df)
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
 
 E talvez você prefira empregar a seguinte dica prática:
@@ -883,8 +1110,7 @@ E talvez você prefira empregar a seguinte dica prática:
 “q” = **q**uartis (probabilidade acumulada inversa) “r” = **r**andom
 values
 
-Exemplo: Preços da Gasolina
----------------------------
+## Exemplo: Preços da Gasolina
 
 Uma empresa de pagamentos eletrônicos divulgou um levantamento do preço
 da gasolina no país. O preço médio encontrado foi de R$ 4.651 com um
@@ -894,40 +1120,46 @@ de combustível. De acordo com eles, o Acre tem a gasolina mais cara (R$
 / l). Considerando uma distribuição normal do preços da gasolina podemos
 então fazer uma série de análises.
 
--   Qual a probabilidade de encontrarmos o preço da gasolina abaixo de
+  - Qual a probabilidade de encontrarmos o preço da gasolina abaixo de
     R$ 5.000 o litro?
 
-<!-- -->
+<!-- end list -->
 
-    mu = 4.651
-    sigma = 0.198
+``` r
+mu = 4.651
+sigma = 0.198
 
-    pnorm(5, mean=4.651, sd=sigma)
+pnorm(5, mean=4.651, sd=sigma)
+```
 
     ## [1] 0.9610182
 
--   Qual a probabilidade de encontrarmos o preço da gasolina maior que o
+  - Qual a probabilidade de encontrarmos o preço da gasolina maior que o
     preço médio do Acre, de R$ 5.115 o litro?
 
-<!-- -->
+<!-- end list -->
 
-    mu = 4.651
-    sigma = 0.198
+``` r
+mu = 4.651
+sigma = 0.198
 
-    1 - pnorm(5.115, mean=4.651, sd=sigma)
+1 - pnorm(5.115, mean=4.651, sd=sigma)
+```
 
     ## [1] 0.009553562
 
--   Qual o preço máximo você colocaria no litro da gasolina para
+  - Qual o preço máximo você colocaria no litro da gasolina para
     garantir estar entre os 85% preços mais baixos e assim garantir uma
     maior procura do seu produto?
 
-<!-- -->
+<!-- end list -->
 
-    mu = 4.651
-    sigma = 0.198
+``` r
+mu = 4.651
+sigma = 0.198
 
-    qnorm(0.85, mean=4.651, sd=sigma)
+qnorm(0.85, mean=4.651, sd=sigma)
+```
 
     ## [1] 4.856214
 
@@ -941,101 +1173,98 @@ apenas o lado a que corresponde a probabilidade indicada e não a área da
 curva, o que só empregamos para gráficos de densidade de probabilidade
 (PDF).
 
-    prob = c(0)
+``` r
+prob = c(0)
 
-    mu = 4.651
-    sigma = 0.198
+mu = 4.651
+sigma = 0.198
 
-    x =seq(mu - 3*sigma,mu + 3*sigma,0.001)
-    prob = pnorm(x, mean=mu, sd=sigma)
+x =seq(mu - 3*sigma,mu + 3*sigma,0.001)
+prob = pnorm(x, mean=mu, sd=sigma)
 
-    par(mfrow = c(1, 3))
+par(mfrow = c(1, 3))
 
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Preço do Combustível',
-         ylab = 'Função Acumulada de Probabilidade',
-         col='darkblue')
-    t = paste('CDF, Norm(mean=', mu ,'sd=', sigma, ')')  
-    title(t) 
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Preço do Combustível',
+     ylab = 'Função Acumulada de Probabilidade',
+     col='darkblue')
+t = paste('CDF, Norm(mean=', mu ,'sd=', sigma, ')')  
+title(t) 
 
-    text(4.5,pnorm(5, mean=mu, sd=sigma)-0.1,round(pnorm(5, mean=mu, sd=sigma),4))
+text(4.5,pnorm(5, mean=mu, sd=sigma)-0.1,round(pnorm(5, mean=mu, sd=sigma),4))
 
-    abline(h=pnorm(5, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
-    abline(v=5,col='red',lty='dotted',lwd=1.5)
+abline(h=pnorm(5, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
+abline(v=5,col='red',lty='dotted',lwd=1.5)
 
-    lb = 0 # limite inferior
-    ub = 5 # limite superior
+lb = 0 # limite inferior
+ub = 5 # limite superior
 
-    i <- x >= lb & x <= ub
-    lines(x, prob)                                       # desenha as linhas limite
-    polygon(c(lb,x[i],ub), c(0,prob[i],0), 
-            col="red")  # preenche a área sob a curva
+i <- x >= lb & x <= ub
+lines(x, prob)                                       # desenha as linhas limite
+polygon(c(lb,x[i],ub), c(0,prob[i],0), 
+        col="red")  # preenche a área sob a curva
 
-    plot(x,
-         prob,
-         type='l',
-         xlab = 'Preço do Combustível',
-         ylab = 'Função Acumulada de Probabilidade',
-         col='darkblue')
-    t = paste('CDF, Norm(mean=', mu ,'sd=', sigma, ')')  
-    title(t) 
+plot(x,
+     prob,
+     type='l',
+     xlab = 'Preço do Combustível',
+     ylab = 'Função Acumulada de Probabilidade',
+     col='darkblue')
+t = paste('CDF, Norm(mean=', mu ,'sd=', sigma, ')')  
+title(t) 
 
-    text(4.6,pnorm(5.115, mean=mu, sd=sigma)-0.1,
-         paste('1 - ', round(pnorm(5.115, mean=mu, sd=sigma),4),' = ',
-         round(1-pnorm(5.115, mean=mu, sd=sigma),4))) 
+text(4.6,pnorm(5.115, mean=mu, sd=sigma)-0.1,
+     paste('1 - ', round(pnorm(5.115, mean=mu, sd=sigma),4),' = ',
+     round(1-pnorm(5.115, mean=mu, sd=sigma),4))) 
 
-    abline(h=pnorm(5.115, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
-    abline(v=5.115,col='red',lty='dotted',lwd=1.5)
+abline(h=pnorm(5.115, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
+abline(v=5.115,col='red',lty='dotted',lwd=1.5)
 
-    lb = 5.115 # limite inferior
-    ub = max(x) # limite superior
+lb = 5.115 # limite inferior
+ub = max(x) # limite superior
 
-    i <- x >= lb & x <= ub
-    lines(x, prob)                                       # desenha as linhas limite
-    polygon(c(lb,x[i],ub), c(0,prob[i],0), 
-            col="red")  # preenche a área sob a curva
+i <- x >= lb & x <= ub
+lines(x, prob)                                       # desenha as linhas limite
+polygon(c(lb,x[i],ub), c(0,prob[i],0), 
+        col="red")  # preenche a área sob a curva
 
 
-    prob = seq(0,1,0.001)
-    valor = qnorm(prob, mean=mu, sd=sigma)
+prob = seq(0,1,0.001)
+valor = qnorm(prob, mean=mu, sd=sigma)
 
-    plot(prob,
-         valor,
-         type='l',
-         ylab = 'Preço do Combustível',
-         xlab = 'Probabilidade Acumulada Inversa',
-         col='black')
-    t = paste('ICDF, Norm(mean=', mu ,'sd=', sigma, ')')  
-    title(t) 
+plot(prob,
+     valor,
+     type='l',
+     ylab = 'Preço do Combustível',
+     xlab = 'Probabilidade Acumulada Inversa',
+     col='black')
+t = paste('ICDF, Norm(mean=', mu ,'sd=', sigma, ')')  
+title(t) 
 
-    text(0.4,qnorm(0.85, mean=mu, sd=sigma)+0.1,round(qnorm(0.85, mean=mu, sd=sigma),3))
+text(0.4,qnorm(0.85, mean=mu, sd=sigma)+0.1,round(qnorm(0.85, mean=mu, sd=sigma),3))
 
-    abline(h=qnorm(0.85, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
-    abline(v=0.85,col='red',lty='dotted',lwd=1.5)
+abline(h=qnorm(0.85, mean=mu, sd=sigma),col='red',lty='dotted',lwd=1.5) 
+abline(v=0.85,col='red',lty='dotted',lwd=1.5)
+```
 
-![](PEA_Aula4_files/figure-markdown_strict/unnamed-chunk-28-1.png)
+![](PEA_Aula4_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
-Referências
------------
+## Referências
 
 Navarro, Danielle, **Learning Statistics with R**, disponível em:
-<a href="https://learningstatisticswithr.com/" class="uri">https://learningstatisticswithr.com/</a>
-( LSR version 0.6 (pdf) ). Acesso: 26/02/2021. Alternativamente em
-formato bookdown:
-<a href="https://learningstatisticswithr.com/book/" class="uri">https://learningstatisticswithr.com/book/</a>
-Acesso: 07/03/2021.
+<https://learningstatisticswithr.com/> ( LSR version 0.6 (pdf) ).
+Acesso: 26/02/2021. Alternativamente em formato bookdown:
+<https://learningstatisticswithr.com/book/> Acesso: 07/03/2021.
 
 Wickham, H., Grolemund, G. **R for Data Science**. O’Reilly Media, Inc.,
 2016.
 
-Glen, S. **Welcome to Statistics How To!** From StatisticsHowTo.com:
-Elementary Statistics for the rest of us! disponível em:
-<a href="https://www.statisticshowto.com/" class="uri">https://www.statisticshowto.com/</a>
-Acesso: 09/03/2021.
+Glen, S. **Welcome to Statistics How To\!** From StatisticsHowTo.com:
+Elementary Statistics for the rest of us\! disponível em:
+<https://www.statisticshowto.com/> Acesso: 09/03/2021.
 
 Brown, R. J.**Connecting the CDF and the PDF** disponível em:
-<a href="http://demonstrations.wolfram.com/ConnectingTheCDFAndThePDF/" class="uri">http://demonstrations.wolfram.com/ConnectingTheCDFAndThePDF/</a>
-*Wolfram Demonstrations Project*. Published: November 2 2007 Acesso:
-09/03/2021.
+<http://demonstrations.wolfram.com/ConnectingTheCDFAndThePDF/> *Wolfram
+Demonstrations Project*. Published: November 2 2007 Acesso: 09/03/2021.
