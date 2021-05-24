@@ -1,13 +1,16 @@
-Inferência Estatística
-======================
+Probabilidade e Estatística - Aula 5
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Inferência Estatística
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -20,12 +23,12 @@ minutos.
 
 **Solução**
 
-1.  Qual o tempo que apresenta iguais chances (50%) do atendimento ser
+2.  Qual o tempo que apresenta iguais chances (50%) do atendimento ser
     em menos ou em mais tempo?
 
 **Solução**
 
-1.  Plote o gráfico dessa distribuição. Ela é simétrica?
+3.  Plote o gráfico dessa distribuição. Ela é simétrica?
 
 **Solução**
 
@@ -40,7 +43,7 @@ igual a 15 dias.
 
 **Solução**
 
-1.  Quantos dias metade de todos os viajantes espera?
+2.  Quantos dias metade de todos os viajantes espera?
 
 ### Exercício 3
 
@@ -61,21 +64,23 @@ siga uma distribuição normal com um desvio padrão de cinco por cento.
 
 **Solução**
 
-1.  Encontre o percentil 0.95. O que ele significa? (expresse em uma
+2.  Encontre o percentil 0.95. O que ele significa? (expresse em uma
     frase)
 
 **Solução**
 
 ### Exercício 5
 
-1.  Qual é a pontuação z-score de *x* = 16 para uma distribuição normal
-    $N(= 12,= 3)?
+1.  Qual é a pontuação z-score de ![x
+    = 16](https://latex.codecogs.com/png.latex?x%20%3D%2016 "x = 16")
+    para uma distribuição normal $N(= 12,= 3)?
 
 **Solução**
 
-1.  O z-score pode ser negativo? Para que valores? Faça um gráfico do
-    z-score para *x* ∈ \[0, 18\] para a distribuição normal $N(= 12,=
-    3).
+2.  O z-score pode ser negativo? Para que valores? Faça um gráfico do
+    z-score para ![x \\in
+    \[0,18\]](https://latex.codecogs.com/png.latex?x%20%5Cin%20%5B0%2C18%5D
+    "x \\in [0,18]") para a distribuição normal $N(= 12,= 3).
 
 **Solução**
 
@@ -104,17 +109,16 @@ negociar para o ano?
 ### Exercício 8
 
 Pacientes de covid-19 de um hospital levam em média 14 dias,
-distribuídos normalmente, para se reestabelecer. Existem 30 pacientes de
-covid-19 internados. Qual a chance desses pacientes saírem em média com
-menos de 12 e 13 dias se reestabelecer?
+distribuídos normalmente, para se reestabelecer. Existem 30 pacientes
+de covid-19 internados. Qual a chance desses pacientes saírem em média
+com menos de 12 e 13 dias se reestabelecer?
 
 **Dica** Para 30 amostras a distribuição t-Student tem valores próximos
 da normal
 
 **Solução**
 
-Exercício 9
------------
+## Exercício 9
 
 Faça um gráfico da distribuição Chi-quadrado com diferentes graus de
 liberdade. Para que valores de graus de liberdade entre 10, 20 e 30 a

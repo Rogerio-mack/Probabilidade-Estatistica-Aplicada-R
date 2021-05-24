@@ -1,13 +1,16 @@
-Regressão Linear
+Probabilidade e Estatística - Aula 7
 ================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Regressão Linear
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -40,13 +43,13 @@ help(stackloss)
 
 **Solução**
 
-1.  A instância `Air.Flow=72, Water.Temp=20, Acid.Conc=85` está presente
+3.  A instância `Air.Flow=72, Water.Temp=20, Acid.Conc=85` está presente
     na base. Quanto o valor obtido pelo modelo esse valor difere do
     valor encontrado na base?
 
 **Solução**
 
-1.  QUal atributo contribui mais positivamente para o incremento de
+4.  QUal atributo contribui mais positivamente para o incremento de
     stackloss?
 
 Isso pode ser identificado pelo coeficiente associado ao atributo
@@ -75,8 +78,8 @@ summary(stack_n)
 
 **Solução**
 
-1.  A regressão linear obtida é uma boa aproximação dos dados
-    (R-squared \> 0.85)? Qual o valor do (Multiple) R-squared obtido?
+5.  A regressão linear obtida é uma boa aproximação dos dados (R-squared
+    \> 0.85)? Qual o valor do (Multiple) R-squared obtido?
 
 **Solução**
 
@@ -92,7 +95,7 @@ significativo para a regressão e recalcule.
 
 **Solução**
 
-1.  Modelos com com menos variáveis preditoras são modelos preferíveis
+3.  Modelos com com menos variáveis preditoras são modelos preferíveis
     pois assumem uma menor quantidade de hipóteses sobre os dados
     (procure na Internet, Occam’s razor ou princípio da parcimônia).
     Sendo a diferença do (Multiple) R-squared obtido no exercício
@@ -140,20 +143,20 @@ dados.
 
 **Solução**
 
-1.  Estime as emissões de CO2EMISSIONS a partir de valores de
+2.  Estime as emissões de CO2EMISSIONS a partir de valores de
     FUELCONSUMPTION\_COMB para os valores 10 e 25. Quais os valores
     obtidos?
 
 **Solução**
 
-1.  Acrescente ao seu modelo a variável de entrada ENGINESIZE.
+3.  Acrescente ao seu modelo a variável de entrada ENGINESIZE.
 
 3.1. Qual a função linear obtida? 3.2. Qual o novo valor do (Multiple)
 R-squared obtido? Esse é um modelo melhor que o anterior?
 
 **Solução**
 
-1.  Faça agora a predição de CO2EMISSIONS com base no modelo anterior,
+4.  Faça agora a predição de CO2EMISSIONS com base no modelo anterior,
     para `FUELCONSUMPTION_COMB = 10` e `ENGINESIZE=2`. Qual o valor
     encontrado?
 

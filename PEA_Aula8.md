@@ -1,7 +1,11 @@
-Regressão Logística
-===================
+Probabilidade e Estatística - Aula 8
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Regressão Logística
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
@@ -12,8 +16,7 @@ classificação de dados. Esse é um importante modelo de classificação e
 desempenha um papel fundamental para o entendimento de modelos mais
 gerais de aprendizado de máquina supervisionados.
 
-Introdução
-----------
+## Introdução
 
 A regressão logística modela as probabilidades para problemas de
 classificação binários (com dois resultados possíveis, como ‘y/n’ ou
@@ -25,11 +28,12 @@ falha na classificação. No caso de duas classes, você poderia rotular
 uma das classes com 0 e a outra com 1 e usar a regressão linear.
 Tecnicamente isso funciona e certamente obterá os coeficientes da
 regressão linear, afinal você já aprendeu que para quaisquer conjuntos
-de pontos (*X*, *y*) podemos calcular os coeficientes de um modelo
-linear. Mas para classificação essa abordagem apresenta muitos
-problemas. Como seu resultado não é uma probabilidade, mas a
-interpolação linear dos pontos, não há um limite significativo no qual
-você possa distinguir uma classe da outra.
+de pontos ![(X, y)](https://latex.codecogs.com/png.latex?%28X%2C%20y%29
+"(X, y)") podemos calcular os coeficientes de um modelo linear. Mas para
+classificação essa abordagem apresenta muitos problemas. Como seu
+resultado não é uma probabilidade, mas a interpolação linear dos pontos,
+não há um limite significativo no qual você possa distinguir uma classe
+da outra.
 
 Um modelo simples pode mostrar a ineficiência da regressão linear para a
 classificação. Veja a abaixo o uso de regressão linear para a
@@ -58,7 +62,7 @@ abline(coefficients(fit),col='red',lty=2)
 points(df$x, df$y, col=df$y+2, pch=17, cex=1.5)
 ```
 
-![](PEA_Aula8_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](PEA_Aula8_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 plot(df_extra$x, df_extra$y, col=df_extra$y+2)
@@ -67,7 +71,7 @@ abline(coefficients(fit),col='red',lty=2)
 points(df_extra$x, df_extra$y, col=df_extra$y+2, pch=17, cex=1.5)
 ```
 
-![](PEA_Aula8_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](PEA_Aula8_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
 ``` r
 plot(df$x, df$y, col=df$y+2, pch=17)
@@ -78,7 +82,7 @@ polygon(c(0,12,0), c(predict(fit,data.frame(x = c(0,12))),1.1), col='#CCFF00')
 points(df$x, df$y, col=df$y+2, pch=17, cex=1.5)
 ```
 
-![](PEA_Aula8_files/figure-markdown_github/unnamed-chunk-2-3.png)
+![](PEA_Aula8_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
 
 ``` r
 plot(df_extra$x, df_extra$y, col=df_extra$y+2)
@@ -89,21 +93,24 @@ polygon(c(0,21,0), c(predict(fit,data.frame(x = c(0,21))),1.1), col='#CCFF00')
 points(df_extra$x, df_extra$y, col=df_extra$y+2, pch=17, cex=1.5)
 ```
 
-![](PEA_Aula8_files/figure-markdown_github/unnamed-chunk-2-4.png)
+![](PEA_Aula8_files/figure-gfm/unnamed-chunk-2-4.png)<!-- -->
 
 O primeiro conjunto de pontos é linearmente separável e a regressão
 linear permite classificar os dados com apenas um erro de classificação
-(o ponto vermelho de menor valor *x*). Mas ao inserirmos novos dos o
-modelo falha.
+(o ponto vermelho de menor valor
+![x](https://latex.codecogs.com/png.latex?x "x")). Mas ao inserirmos
+novos dos o modelo falha.
 
-Modelo logístico
-----------------
+## Modelo logístico
 
 Para resolver esse problema, em vez de modelarmos diretamente a
 probabilidade de uma classe modelaremos por uma regressão linear o que é
 conhecido como log de probabilidades:
 
-$$ log( \\frac{p}{1-p}) = a\_0 + a\_1 x\_1 + ... + a\_n x\_n $$
+  
+![ log( \\frac{p}{1-p}) = a\_0 + a\_1 x\_1 + ... + a\_n x\_n
+](https://latex.codecogs.com/png.latex?%20log%28%20%5Cfrac%7Bp%7D%7B1-p%7D%29%20%3D%20a_0%20%2B%20a_1%20x_1%20%2B%20...%20%2B%20a_n%20x_n%20
+" log( \\frac{p}{1-p}) = a_0 + a_1 x_1 + ... + a_n x_n ")  
 
 Os resultados da regressão logística vão então informar sobre as chances
 (‘Odds’) e razão das chances (‘Odds Ratio’) e não exatamente
@@ -114,12 +121,18 @@ probabilidade p, suas chances são p / (1-p), e é por isso que a esquerda
 lado é chamado de “odds logarítmicas” ou “logit”, e podemos obter a
 probabilidade de chances invertendo a função acima:
 
-*p* = 1/(1 + *e*<sup> − (*a*<sub>0</sub> + *a*<sub>1</sub>*x*<sub>1</sub> + ... + *a*<sub>*n*</sub>*x*<sub>*n*</sub>)</sup>)
+  
+![ p = 1 / (1 + e^{- ( a\_0 + a\_1 x\_1 + ... + a\_n x\_n )
+})](https://latex.codecogs.com/png.latex?%20p%20%3D%201%20%2F%20%281%20%2B%20e%5E%7B-%20%28%20a_0%20%2B%20a_1%20x_1%20%2B%20...%20%2B%20a_n%20x_n%20%29%20%7D%29
+" p = 1 / (1 + e^{- ( a_0 + a_1 x_1 + ... + a_n x_n ) })")  
 
-Essa função é conhecida como função logística ou sigmóide, *σ*, é
+Essa função é conhecida como função logística ou sigmóide,
+![\\sigma](https://latex.codecogs.com/png.latex?%5Csigma "\\sigma"), é
 definida como:
 
-$$\\sigma(x)=\\frac{1}{1+e^{-x}}$$
+  
+![\\sigma(x)=\\frac{1}{1+e^{-x}}](https://latex.codecogs.com/png.latex?%5Csigma%28x%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-x%7D%7D
+"\\sigma(x)=\\frac{1}{1+e^{-x}}")  
 Essa função tem o seguinte gráfico:
 
 ``` r
@@ -139,31 +152,34 @@ title('Logistic Function')
 text(-2,0.7, TeX('$\\sigma(x) = \\frac{1}{1+e^{-x}}$') )
 ```
 
-![](PEA_Aula8_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](PEA_Aula8_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 Note que os valores dessa função variam de 0 a 1 e é portanto, possível
 empregar essa função como uma medida de probabilidade das chances.
 
 Esse procedimento funciona muito melhor para classificação e podemos
 usar 0.5 como o valor limite de probabilidades entre as classes, isto é,
-valores *p* \< 0.5 para uma classe e valores *p* ≥ 0.5 para outra.
+valores ![p \< 0.5](https://latex.codecogs.com/png.latex?p%20%3C%200.5
+"p \< 0.5") para uma classe e valores ![p
+\\ge 0.5](https://latex.codecogs.com/png.latex?p%20%5Cge%200.5
+"p \\ge 0.5") para outra.
 
-Estimando os parâmetros
------------------------
+## Estimando os parâmetros
 
-Como estimar então os coeficientes
-*a*<sub>0</sub>, *a*<sub>1</sub>, .... De fato, esse cálculo já não é
-tão simples como o da regressão linear. Do mesmo modo que na regressão
-linear queremos minimizar o erro (o que é o mesmo que, maximizar os
-*acertos*), mas no lugar de empregarmos uma solução algébrica (como o
-sistema de derivadas igualado a 0 que vimos anteriormente), aqui isso é
-feito em geral de forma numérica, em um procedimento iterativo de
-aproximações sucessivas e algo que tem uma forte aplicação em muitos
-outros modelos de aprendizado de máquina. Como você poderá ver em outros
-cursos, em geral o aprendizado dos parâmetros pode ser resumido a
-maximizar ou minimizar uma determinada função objetivo. O procedimento,
-para classificação entre duas classes possíveis ‘0’ e ‘1’ (poderiam ser
-‘y’ e ‘n’, ou ainda ‘red’ e ‘green’) é de forma geral o seguinte:
+Como estimar então os coeficientes ![a\_0, a\_1,
+...](https://latex.codecogs.com/png.latex?a_0%2C%20a_1%2C%20...
+"a_0, a_1, ..."). De fato, esse cálculo já não é tão simples como o da
+regressão linear. Do mesmo modo que na regressão linear queremos
+minimizar o erro (o que é o mesmo que, maximizar os *acertos*), mas no
+lugar de empregarmos uma solução algébrica (como o sistema de derivadas
+igualado a 0 que vimos anteriormente), aqui isso é feito em geral de
+forma numérica, em um procedimento iterativo de aproximações sucessivas
+e algo que tem uma forte aplicação em muitos outros modelos de
+aprendizado de máquina. Como você poderá ver em outros cursos, em geral
+o aprendizado dos parâmetros pode ser resumido a maximizar ou minimizar
+uma determinada função objetivo. O procedimento, para classificação
+entre duas classes possíveis ‘0’ e ‘1’ (poderiam ser ‘y’ e ‘n’, ou ainda
+‘red’ e ‘green’) é de forma geral o seguinte:
 
 1.  Para cada amostra que realmente pertença a classe ‘1’, gostaríamos
     que p ficasse perto de 1, e para cada amostra que não fosse ‘1’,
@@ -172,13 +188,14 @@ para classificação entre duas classes possíveis ‘0’ e ‘1’ (poderiam s
 
 2.  Assim, tomamos o produto de p sobre todas as amostras ‘1’ com o
     produto de 1-p sobre todas as não ‘1’ amostras para avaliar a
-    precisão de nossas estimativas para os parâmetros
-    *a*<sub>0</sub>, *a*<sub>1</sub>, ...
+    precisão de nossas estimativas para os parâmetros ![a\_0, a\_1,
+    ...](https://latex.codecogs.com/png.latex?a_0%2C%20a_1%2C%20...
+    "a_0, a_1, ...")
 
 3.  Gostaríamos de fazer que a função de probabilidade seja a maior
     possível (ou seja, o mais próximo possível de 1). Começamos então
     com um palpite para os parâmetros (sim, um *chute* inicial para o
-    valores!), e vamos ajustando esses valores iterativamente para
+    valores\!), e vamos ajustando esses valores iterativamente para
     melhorar a probabilidade até descobrirmos que não podemos mais
     aumentar essa probabilidade perturbando os coeficientes.
 
@@ -198,14 +215,18 @@ operações de cartão de crétido com base em dados histórico das
 ocorrências de fraude, valores da operação e uso do cartão nas últimas
 24h (duas variáveis que são conhecidas como grandes preditoras de fraude
 em transações com cartões). Para isso, depois de estimados os valores
-*a*<sub>0</sub>, *a*<sub>1</sub>, ... com base nas amostras conhecidas,
-bastaria se aplicar o novo valor `(Valor,Trans24h)` ao modelo logístico
-estimado:
+![a\_0, a\_1,
+...](https://latex.codecogs.com/png.latex?a_0%2C%20a_1%2C%20...
+"a_0, a_1, ...") com base nas amostras conhecidas, bastaria se aplicar o
+novo valor `(Valor,Trans24h)` ao modelo logístico estimado:
 
-*P*(Fraude\|Valor, Trans24h) = 1/(1 + *e*<sup> − (*a*<sub>0</sub> + *a*<sub>1</sub>Valor + *a*<sub>2</sub>Trans24h)</sup>)
+  
+![ P(\\text{Fraude} | \\text{Valor, Trans24h}) = 1 / (1 + e^{- ( a\_0 +
+a\_1 \\text{Valor} + a\_2 \\text{Trans24h} )
+})](https://latex.codecogs.com/png.latex?%20P%28%5Ctext%7BFraude%7D%20%7C%20%5Ctext%7BValor%2C%20Trans24h%7D%29%20%3D%201%20%2F%20%281%20%2B%20e%5E%7B-%20%28%20a_0%20%2B%20a_1%20%5Ctext%7BValor%7D%20%2B%20a_2%20%5Ctext%7BTrans24h%7D%20%29%20%7D%29
+" P(\\text{Fraude} | \\text{Valor, Trans24h}) = 1 / (1 + e^{- ( a_0 + a_1 \\text{Valor} + a_2 \\text{Trans24h} ) })")  
 
-Vantagens e Cuidados
---------------------
+## Vantagens e Cuidados
 
 Um cuidado a ser tomado no uso da regressão logística é que ela pode
 *sofrer de separação completa*. Isso ocorre quando uma variável
@@ -224,21 +245,20 @@ aos modelos que fornecem apenas a classificação final, pois faz uma
 grande diferença saber se a probalidade daquela classe é 99% ou 51%.
 Para usar o nosso exemplo, pense em uma transação de cartão classificada
 como fraude, ser uma fraude com 99% de chance parece algo bem mais
-crítico que uma fraude com 51% de chance!
+crítico que uma fraude com 51% de chance\!
 
 A regressão logística ainda é um modelo de classificação binária. Mas
 ele pode ser estendido para classificação multiclasse, o que denominamos
 de Regressão Multinomial. O procedimento é simples e consiste em
 criarmos vários classificadores. Se você tem 3 classes, ‘Y’, ‘N’, ‘O’,
 pode então ter um classificador logístico ‘Y’ e ‘não Y’, outro ‘N’ e
-‘não Y’, ainda ‘O’ e ‘não O’ e, do mesmo modo, buscar o maior valor de p
-entre esses classificadores. Em geral os pacotes de Software como R
+‘não Y’, ainda ‘O’ e ‘não O’ e, do mesmo modo, buscar o maior valor
+de p entre esses classificadores. Em geral os pacotes de Software como R
 fazem uma implementação multimodal da classificação logística e,
 portanto, fica transparente para você a regressão logística ser um
 procedimento de classificação binária.
 
-Exemplo: `mtcars`
------------------
+## Exemplo: `mtcars`
 
 Vamos agora empregar a função logística para classificar os veículos
 como automáticos e não automáticos (atributo `am`), tendo como base as
@@ -321,9 +341,11 @@ predict(fit, data.frame(hp=100, wt=1.8))
     ##        1 
     ## 7.941603
 
-O veículo, tendo *h**p* = 100, *w**t* = 1.8 tem, então, probabilidade de
-95% de ser um veículo de transmissão automática. Para obter a
-classificação 1 (TRUE) e 0 (FALSE) você ainda pode fazer:
+O veículo, tendo ![hp=100,
+wt=1.8](https://latex.codecogs.com/png.latex?hp%3D100%2C%20wt%3D1.8
+"hp=100, wt=1.8") tem, então, probabilidade de 95% de ser um veículo de
+transmissão automática. Para obter a classificação 1 (TRUE) e 0 (FALSE)
+você ainda pode fazer:
 
 ``` r
 predict(fit, data.frame(hp=100, wt=1.8)) > 0.5
@@ -408,8 +430,7 @@ if (predict(fit, data.frame(hp=100, wt=1.8)) > 0.5){
 
     ## [1] "not am"
 
-Conclusão Final
----------------
+## Conclusão Final
 
 Você percorreu aqui um grande número de tópicos de Probabilidade e
 Estatística e de programação com R. Aprendeu sobre estatísticas
@@ -433,15 +454,14 @@ O que vem a seguir? Esse curso habilita você a seguir os estudos nas
 estatístico, empregam-se outras técnicas de aprendizado de máquina e
 para o quê você teve uma pequena introdução com o estudo da regressão
 logísica. Uma série de outras técnicas estatísticas importantes, como
-análises de séries temporais e aglomerados de dados, não foram estudadas
-aqui, também têm, nos conceitos que aprendeu aqui os seus primeiros
-fundamentos. Tenho certeza, então, que esse pode não ter sido o seu
-primeiro contato com estatística e probabilidades, mas certamente não
-será o último, e você sempre poderá voltar aqui para retomar esses
-conceitos! ;-)
+análises de séries temporais e aglomerados de dados, não foram
+estudadas aqui, também têm, nos conceitos que aprendeu aqui os seus
+primeiros fundamentos. Tenho certeza, então, que esse pode não ter sido
+o seu primeiro contato com estatística e probabilidades, mas certamente
+não será o último, e você sempre poderá voltar aqui para retomar esses
+conceitos\! ;-)
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício **RESOLVIDO**
 
@@ -714,8 +734,8 @@ head(bio)
     ## 6  8 10 10  8  7 10  9  7  1     1
 
 Implemente um modelo logístico para classificação “benign” or
-“malignant” das instâncias de bio. Compare os valores da sua predição
-com os valores reais da base.
+“malignant” das instâncias de bio. Compare os valores da sua
+predição com os valores reais da base.
 
 Dica: para usar todos os atributos de entrada empregue ‘.’ no lugar das
 variáveis de entrada.
@@ -774,20 +794,15 @@ cat('percentual de acertos: ', sum(diag(matrix))/sum(matrix))
 
     ## percentual de acertos:  0.9604685
 
-Referências
------------
+## Referências
 
 Navarro, Danielle, **Learning Statistics with R**, disponível em:
-<a href="https://learningstatisticswithr.com/" class="uri">https://learningstatisticswithr.com/</a>
-( LSR version 0.6 (pdf) ). Acesso: 26/02/2021. Alternativamente em
-formato bookdown:
-<a href="https://learningstatisticswithr.com/book/" class="uri">https://learningstatisticswithr.com/book/</a>
-Acesso: 07/03/2021.
+<https://learningstatisticswithr.com/> ( LSR version 0.6 (pdf) ).
+Acesso: 26/02/2021. Alternativamente em formato bookdown:
+<https://learningstatisticswithr.com/book/> Acesso: 07/03/2021.
 
 Anunciação, Luis, **Conceitos e análises estatísticas com R e JASP**,
-disponível em:
-<a href="https://anovabr.github.io/mqt/" class="uri">https://anovabr.github.io/mqt/</a>
-Acesso: 10/04/2021.
+disponível em: <https://anovabr.github.io/mqt/> Acesso: 10/04/2021.
 
 Ferreira, Eric Batista, Oliveira, Marcelo Silva de. **Introdução à
 Estatística com R**. Editora Universidade Federal de Alfenas, 2020.

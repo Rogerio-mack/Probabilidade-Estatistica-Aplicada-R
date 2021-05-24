@@ -1,13 +1,16 @@
-Probabilidade, Estatística e Introdução ao R
-============================================
+Probabilidade e Estatística - Exercícios 1
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Probabilidade, Estatística e Introdução ao R
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -32,34 +35,34 @@ head(df)
 
 **Solução**
 
-1.  Forneça as principais estatísticas dos dados com `summary`.
+2.  Forneça as principais estatísticas dos dados com `summary`.
 
 **Solução**
 
-1.  Crie um dataframe `mydf` somente com data e os índices VALE3 e
+3.  Crie um dataframe `mydf` somente com data e os índices VALE3 e
     PETR4.
 
 **Solução**
 
-1.  Qual o valor da ação VALE3 em 2020-03-02?
+4.  Qual o valor da ação VALE3 em 2020-03-02?
 
 **Solução**
 
-1.  Qual a média de valor da ação VALE3 nos dados?
+5.  Qual a média de valor da ação VALE3 nos dados?
 
 **Solução**
 
-1.  Quantas vezes no período a ação VALE3 esteve acima da média para o
+6.  Quantas vezes no período a ação VALE3 esteve acima da média para o
     mesmo período?
 
 **Solução**
 
-1.  Qual o percentual de vezes no período que a ação VALE3 esteve acima
+7.  Qual o percentual de vezes no período que a ação VALE3 esteve acima
     da média?
 
 **Solução**
 
-1.  Em algum momento no período a ação da VALE3 esteve com preço maior
+8.  Em algum momento no período a ação da VALE3 esteve com preço maior
     que a PETR4? Se sim, em que datas?
 
 **Solução**
@@ -107,23 +110,23 @@ head(Cars93)
 
 **Solução**
 
-1.  Qual média de potência (`Horsepower`) dos veículos de Cars93 por
+2.  Qual média de potência (`Horsepower`) dos veículos de Cars93 por
     origem?
 
 DICA: verifique antes os valores de origem com `table()` ou `unique()`
 
 **Solução**
 
-1.  Quantos veículos são do fabricante ‘Ford’ no total e somente para
+3.  Quantos veículos são do fabricante ‘Ford’ no total e somente para
     modelos ‘Sporty’?
 
 **Solução**
 
-1.  Qual o percentual de veículos são do fabricante ‘Ford’? E qual o
+4.  Qual o percentual de veículos são do fabricante ‘Ford’? E qual o
     percentual de veículos da Ford são ‘Sporty’?
 
 **Solução**
 
-1.  Qual o maior e o menor preço de veículos da ‘Ford’ ?
+5.  Qual o maior e o menor preço de veículos da ‘Ford’ ?
 
 **Solução**

@@ -1,7 +1,11 @@
-Estatística Descritiva
-======================
+Probabilidade e Estatística - Aula 2
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Estatística Descritiva
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
@@ -15,8 +19,7 @@ variáveis podem estar relacionadas linearmente (covariância,
 correlação). E você aprender tudo isso aplicando esses conceitos a
 conjuntos de dados com R.
 
-Introdução
-----------
+## Introdução
 
 A estatística descritiva busca fornecer uma descrição útil de um grande
 número de dados a partir de medidas de centralidade e dispersão dos
@@ -26,8 +29,7 @@ frequencia de valores e moda, correlação e covariância.
 Você, então, pode aplicar agora os seus conhecimentos de R para fazer
 essas estatísticas e entender melhor um conjunto de dados de interesse.
 
-Tipos de dados
---------------
+## Tipos de dados
 
 Uma distinção importante que você precisa ter em mente ao explorar os
 dados é identificar que tipo de dado, ou a natureza do dado, que você
@@ -36,12 +38,12 @@ qualitativos e quantitativos, ou mais simplesmente dados numéricos e
 dados categóricos.
 
 | Dados quantitativos ou numéricos         | Exemplos                        |
-|:-----------------------------------------|:--------------------------------|
+| :--------------------------------------- | :------------------------------ |
 | discretos (contagens ou número inteiros) | ex. número de casos de infecção |
 | contínuos (medidas numa escala contínua) | ex. volume, área, peso, preços  |
 
 | Dados qualitativos ou categóricos | Exemplos                           |
-|:----------------------------------|:-----------------------------------|
+| :-------------------------------- | :--------------------------------- |
 | nominais (categorias de dados)    | ex. sexo: masculino, feminino      |
 | ordinais (categorias ordenadas)   | ex. salinidade: baixa, média, alta |
 
@@ -56,8 +58,7 @@ também não há uma relação de ordem (do menor para o maior) entre esses
 valores. Assim, essa natureza do dado é determinante para você saber que
 estatísticas são aplicáveis àquele dado.
 
-Amostra X População
--------------------
+## Amostra X População
 
 Outra característica importante que você deve ter em mente sobre a
 natureza dos dados é se os dados que você irá analisar são *amostras* de
@@ -72,8 +73,7 @@ deve ter em mente ao obter medidas como média ou desvio padrão se elas
 se referem a dados de uma amostra ou dados de toda a população de dados.
 Em alguns havendo inclusive uma diferença na forma de cálculo.
 
-Exploração inicial dos dados
-----------------------------
+## Exploração inicial dos dados
 
 Vamos empregar nesses exemplos o dataset `Cars93`, um dataset built-in
 do pacote `MASS`. Significado ds dados, quantidade e linhas e colunas,
@@ -382,14 +382,13 @@ nrow(myCars)
 
     ## [1] 21
 
-Estatísticas dos Valores
-------------------------
+## Estatísticas dos Valores
 
 O quadro a seguir sumariza alguns comandos básicos de R empregados para
 se obter estatísticas dos dados.
 
 | Univariada    | Descrição                                 |
-|---------------|-------------------------------------------|
+| ------------- | ----------------------------------------- |
 | min(x)        | Mínimo elemento em x                      |
 | max(x)        | Máximo elemento em x                      |
 | range(x)      | Range (min to max) elementos em x         |
@@ -402,7 +401,7 @@ se obter estatísticas dos dados.
 | table(x)      | Frequ\~encias de valores de x             |
 
 | Multivariada | Descrição                           |
-|--------------|-------------------------------------|
+| ------------ | ----------------------------------- |
 | cor(x,y)     | Correlação entre os elementos x e y |
 | cov(x,y)     | cov(x,y) Covariance between x and y |
 
@@ -410,8 +409,7 @@ A análise univariada refere-se a estatísticas que explicam uma única
 variável enquanto a análise multivariada são estatísticas que buscam
 explorar a relação entre duas ou mais variáveis.
 
-Frequência de valores `table()`
--------------------------------
+## Frequência de valores `table()`
 
 Para dados categóricos uma característica importante é quantidade de
 instâncias (linhas ou registros) que aparecem de cada valor. Em
@@ -447,10 +445,9 @@ barplot(table(Cars93$Type), main='Qde de Veículos por Tipo',col='orange')
 barplot(table(Cars93$Origin), main='Qde de Veículos por Origem',col=c('green','blue'))
 ```
 
-![](PEA_Aula2_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](PEA_Aula2_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-Medidas de Centralidade
------------------------
+## Medidas de Centralidade
 
 Média, Mediana e Moda são as principais medidas de Centralidade ou
 medida de tendência central dos dados.
@@ -459,7 +456,10 @@ A **média** é calculada somando-se todos os valores de um conjunto de
 dados e dividindo-se pelo número de elementos deste conjunto,
 resumidamente:
 
-$$ \\bar{x} = \\frac{\\sum\_{i}^{n} x\_i}{n} $$
+  
+![ \\bar{x} = \\frac{\\sum\_{i}^{n} x\_i}{n}
+](https://latex.codecogs.com/png.latex?%20%5Cbar%7Bx%7D%20%3D%20%5Cfrac%7B%5Csum_%7Bi%7D%5E%7Bn%7D%20x_i%7D%7Bn%7D%20
+" \\bar{x} = \\frac{\\sum_{i}^{n} x_i}{n} ")  
 A **Moda** é o valor mais frequente de um conjunto de dados, sendo
 assim, para defini-la basta observar a frequência com que os valores
 aparecem, e um conjunto de dados é chamado de bimodal quando apresenta
@@ -559,8 +559,7 @@ cat('\nMédia de a: ', mean(a), '\nMédia de b: ', mean(b))
     ## Média de a:  2727.273 
     ## Média de b:  83335833
 
-Medidas de Dispersão
---------------------
+## Medidas de Dispersão
 
 Medidas de dispersão são usadas para determinar o grau de variabilidade
 dos dados de um conjunto de valores. As estatísticas de tendência
@@ -603,12 +602,19 @@ A variação é uma medida numérica de como os valores dos dados estão
 dispersos em torno da média . Em particular, a variação da amostra é
 definida como:
 
-$$  s^2(x) = \\sum\_i^n \\frac{( x\_i -  \\bar{x})^2 }{n - 1} $$
+  
+![ s^2(x) = \\sum\_i^n \\frac{( x\_i - \\bar{x})^2 }{n - 1}
+](https://latex.codecogs.com/png.latex?%20%20s%5E2%28x%29%20%3D%20%5Csum_i%5En%20%5Cfrac%7B%28%20x_i%20-%20%20%5Cbar%7Bx%7D%29%5E2%20%7D%7Bn%20-%201%7D%20
+"  s^2(x) = \\sum_i^n \\frac{( x_i -  \\bar{x})^2 }{n - 1} ")  
 
 Da mesma forma, a variância de uma população é definida em termos da
-média da população *μ* e tamanho da população N :
+média da população ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu
+"\\mu") e tamanho da população N :
 
-$$  \\sigma^2(x) = \\sum\_i^n  \\frac{( x\_i -  \\mu)^2 }{N} $$
+  
+![ \\sigma^2(x) = \\sum\_i^n \\frac{( x\_i - \\mu)^2 }{N}
+](https://latex.codecogs.com/png.latex?%20%20%5Csigma%5E2%28x%29%20%3D%20%5Csum_i%5En%20%20%5Cfrac%7B%28%20x_i%20-%20%20%5Cmu%29%5E2%20%7D%7BN%7D%20
+"  \\sigma^2(x) = \\sum_i^n  \\frac{( x_i -  \\mu)^2 }{N} ")  
 Em R, a variação da amostra é calculada com a função `var()`. Observe
 que, quando o tamanho da amostra é grande, a variância da amostra
 converge para a variância da população. Desse modo não faremos na maior
@@ -642,16 +648,28 @@ sum((x - mean(x))^2) / (length(x) - 1) # este é o cálculo que corresponde a fu
 O desvio padrão, de uma amostra ou população, pode ser obtido pela raiz
 quadrada da correspondente variância. Assim,
 
-$$  s(x) =  \\sqrt{ \\sum\_i^n \\frac{( x\_i -  \\bar{x})^2 }{n - 1}} $$
+  
+![ s(x) = \\sqrt{ \\sum\_i^n \\frac{( x\_i - \\bar{x})^2 }{n - 1}}
+](https://latex.codecogs.com/png.latex?%20%20s%28x%29%20%3D%20%20%5Csqrt%7B%20%5Csum_i%5En%20%5Cfrac%7B%28%20x_i%20-%20%20%5Cbar%7Bx%7D%29%5E2%20%7D%7Bn%20-%201%7D%7D%20
+"  s(x) =  \\sqrt{ \\sum_i^n \\frac{( x_i -  \\bar{x})^2 }{n - 1}} ")  
 Ou simplesmente
 
-$$  s(x) = \\sqrt{ s^2(x) } $$
+  
+![ s(x) = \\sqrt{ s^2(x) }
+](https://latex.codecogs.com/png.latex?%20%20s%28x%29%20%3D%20%5Csqrt%7B%20s%5E2%28x%29%20%7D%20
+"  s(x) = \\sqrt{ s^2(x) } ")  
 e, igualmente
 
-$$  \\sigma(x) =   \\sqrt{  \\sum\_i^n  \\frac{( x\_i -  \\mu)^2 }{N} } $$
+  
+![ \\sigma(x) = \\sqrt{ \\sum\_i^n \\frac{( x\_i - \\mu)^2 }{N} }
+](https://latex.codecogs.com/png.latex?%20%20%5Csigma%28x%29%20%3D%20%20%20%5Csqrt%7B%20%20%5Csum_i%5En%20%20%5Cfrac%7B%28%20x_i%20-%20%20%5Cmu%29%5E2%20%7D%7BN%7D%20%7D%20
+"  \\sigma(x) =   \\sqrt{  \\sum_i^n  \\frac{( x_i -  \\mu)^2 }{N} } ")  
 ou
 
-$$  \\sigma(x) =   \\sqrt{  \\sigma^2(x)  } $$
+  
+![ \\sigma(x) = \\sqrt{ \\sigma^2(x) }
+](https://latex.codecogs.com/png.latex?%20%20%5Csigma%28x%29%20%3D%20%20%20%5Csqrt%7B%20%20%5Csigma%5E2%28x%29%20%20%7D%20
+"  \\sigma(x) =   \\sqrt{  \\sigma^2(x)  } ")  
 Um valor alto para a variância (ou desvio padrão) indicará que os
 valores encontram-se mais distantes da média – ou seja, a distribuição é
 mais dispersa.
@@ -702,10 +720,15 @@ permite fazer operações como cálculo do intervalo acima.
 Outra medida de dispersão importante é o escore padronizado. Ele fornece
 uma medida de quanto um valor se desvia da média e é dado por:
 
-$$  Z(x\_i) =   \\frac{ x\_i -  \\bar{x} }{s(x)} $$
-Valores negativos indicam que o valor de *x*<sub>*i*</sub> encontra-se à
+  
+![ Z(x\_i) = \\frac{ x\_i - \\bar{x} }{s(x)}
+](https://latex.codecogs.com/png.latex?%20%20Z%28x_i%29%20%3D%20%20%20%5Cfrac%7B%20x_i%20-%20%20%5Cbar%7Bx%7D%20%7D%7Bs%28x%29%7D%20
+"  Z(x_i) =   \\frac{ x_i -  \\bar{x} }{s(x)} ")  
+Valores negativos indicam que o valor de
+![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i") encontra-se à
 esquerda da média e valores positivos indicam que o valor de
-*x*<sub>*i*</sub> encontra-se à direita da média.
+![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i") encontra-se à
+direita da média.
 
 Essa medida é útil para vários propósitos e aqui você pode empregá-la
 para detectar *outliers* dos dados, isto é, dados que se diferenciam
@@ -800,18 +823,30 @@ estejam dentro de 1 desvio padrão da média, 95% dos dados dentro de 2
 desvios padrão da média e 99,7% dos dados dentro de 3 desvios padrão da
 média.
 
-\[*x̄* − 1*σ*(*x*), *x̄* + 1*σ*(*x*)\] → 68% *d**o**s* *d**a**d**o**s*
-\[*x̄* − 2*σ*(*x*), *x̄* + 2*σ*(*x*)\] → 95% *d**o**s* *d**a**d**o**s*
+  
+![\[ \\bar{x} - 1\\sigma(x), \\bar{x} + 1\\sigma(x)\] \\rightarrow 68\\%
+\\ dos \\
+dados](https://latex.codecogs.com/png.latex?%5B%20%5Cbar%7Bx%7D%20-%201%5Csigma%28x%29%2C%20%5Cbar%7Bx%7D%20%2B%201%5Csigma%28x%29%5D%20%5Crightarrow%2068%5C%25%20%5C%20dos%20%5C%20dados
+"[ \\bar{x} - 1\\sigma(x), \\bar{x} + 1\\sigma(x)] \\rightarrow 68\\% \\ dos \\ dados")  
+  
+![\[ \\bar{x} - 2\\sigma(x), \\bar{x} + 2\\sigma(x)\] \\rightarrow 95\\%
+\\ dos \\
+dados](https://latex.codecogs.com/png.latex?%5B%20%5Cbar%7Bx%7D%20-%202%5Csigma%28x%29%2C%20%5Cbar%7Bx%7D%20%2B%202%5Csigma%28x%29%5D%20%5Crightarrow%2095%5C%25%20%5C%20dos%20%5C%20dados
+"[ \\bar{x} - 2\\sigma(x), \\bar{x} + 2\\sigma(x)] \\rightarrow 95\\% \\ dos \\ dados")  
 
-\[*x̄* − 3*σ*(*x*), *x̄* + 3*σ*(*x*)\] → 99.7% *d**o**s* *d**a**d**o**s*
+  
+![\[ \\bar{x} - 3\\sigma(x), \\bar{x} + 3\\sigma(x)\]
+\\rightarrow 99.7\\% \\ dos \\
+dados](https://latex.codecogs.com/png.latex?%5B%20%5Cbar%7Bx%7D%20-%203%5Csigma%28x%29%2C%20%5Cbar%7Bx%7D%20%2B%203%5Csigma%28x%29%5D%20%5Crightarrow%2099.7%5C%25%20%5C%20dos%20%5C%20dados
+"[ \\bar{x} - 3\\sigma(x), \\bar{x} + 3\\sigma(x)] \\rightarrow 99.7\\% \\ dos \\ dados")  
 Os comandos `pnorm` e `qnorm` que você aprenderá quando estudarmos a
 distribuição normal são empregados para obter respectivamente o
-‘percentil’ dos dados a partir de um valor (`pnorm`) ou o valor para um
-dado percentil (`qnorm`), e você pode notar que o preço do quinto
-veículo corresponde a um percentil inferior a 99.7% (e portanto um valor
-esperado), enquanto o preço do modelo Mercedez aparece encontra-se em
-percentil 99.9%, e portanto fora do intervalo de 99.7%, caracterizando
-um outlier.
+‘percentil’ dos dados a partir de um valor (`pnorm`) ou o valor para
+um dado percentil (`qnorm`), e você pode notar que o preço do quinto
+veículo corresponde a um percentil inferior a 99.7% (e portanto um
+valor esperado), enquanto o preço do modelo Mercedez aparece encontra-se
+em percentil 99.9%, e portanto fora do intervalo de 99.7%,
+caracterizando um outlier.
 
 ``` r
 suppressMessages(attach(Cars93))  
@@ -862,8 +897,7 @@ você verá a seguir.
 
 <img src="http://meusite.mackenzie.br/rogerio/TIC/boxplotIQR.png" width=500, align="center"></a>
 
-Quartis
--------
+## Quartis
 
 O percentil é o valor que corresponde a um certo percentual dos dados da
 amostra quando encontram-se ordenados. Desse modo, os percentis 0%, 50%
@@ -900,8 +934,8 @@ detach(Cars93)
 E os quartis, os valores que correspondem a 0, 0.25, 0.5, 0.75 e 1 do
 percentual ordenado das amostras, pela sua importância, acabam recebendo
 denominação próprias. Os valores correspondentes a 25% e 75% dos dados
-são chamados de 1º e 3º quartis, e os demais mínimo (0), mediana (0.5) e
-máximo (1).
+são chamados de 1º e 3º quartis, e os demais mínimo (0), mediana (0.5)
+e máximo (1).
 
 ``` r
 print(quantile(Cars93$Price))
@@ -936,7 +970,7 @@ suppressMessages(attach(Cars93))
 boxplot(Price,data=Cars93,main="Preços por Tipo",col='Blue')
 ```
 
-![](PEA_Aula2_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](PEA_Aula2_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 ``` r
 detach(Cars93)
@@ -951,8 +985,9 @@ quantidade de dados. A técnica interquartis, entretanto, é mais comum e
 é a que empregaremos aqui.
 
 Nessa técnica (veja a figura anterior) são considerados outliers os
-dados que ultrapassam a distância de 1.5 × *I**Q**R*, a distância entre
-o 3o e o 1o quartil.
+dados que ultrapassam a distância de ![1.5 \\times
+IQR](https://latex.codecogs.com/png.latex?1.5%20%5Ctimes%20IQR
+"1.5 \\times IQR"), a distância entre o 3o e o 1o quartil.
 
 ``` r
 iqr = IQR(Cars93$Price)
@@ -997,8 +1032,7 @@ print(Cars93[ (Cars93$Price > mean(Cars93$Price) + 1.5*iqr) | (Cars93$Price < me
     ## 48       Infiniti Q45
     ## 59 Mercedes-Benz 300E
 
-Covariância e Correlação
-------------------------
+## Covariância e Correlação
 
 Entendidas as características de uma variável isolada do nosso conjunto
 de dados (por exemplo o Preço dos veículos), estamos interessados agora
@@ -1007,16 +1041,19 @@ exemplo, você pode estar interessado em saber o preço de um veículo se
 relaciona com o consumo de combustível.
 
 A Covariância mede a relação linear entre duas variáveis. A covariância
-é semelhante à correlação entre duas variáveis, no entanto, elas diferem
-nas seguintes maneiras:
+é semelhante à correlação entre duas variáveis, no entanto, elas
+diferem nas seguintes maneiras:
 
 1.  Coeficientes de correlação são normalizados, sendo um valor no
-    intervalo entre \[ − 1, 1\] onde, um relacionamento linear perfeito
-    resulta em um coeficiente de correlação \|1\|. Ele mede tanto a
-    força (valor absoluto) como a direção da relação linear entre duas
-    variáveis (positivo para mesma direção).
+    intervalo entre
+    ![\[-1, 1\]](https://latex.codecogs.com/png.latex?%5B-1%2C%201%5D
+    "[-1, 1]") onde, um relacionamento linear perfeito resulta em um
+    coeficiente de correlação
+    ![|1|](https://latex.codecogs.com/png.latex?%7C1%7C "|1|"). Ele mede
+    tanto a força (valor absoluto) como a direção da relação linear
+    entre duas variáveis (positivo para mesma direção).
 
-2.  1.  Valores de covariância podem variar de menos infinito a mais
+2.  2.  Valores de covariância podem variar de menos infinito a mais
         infinito e, portanto, o valor para uma relação linear ideal
         dependerá dos dados. Assim, é difícil determinar a força da
         relação entre as variáveis. De qualquer modo, valores de
@@ -1039,8 +1076,9 @@ cor(x,y)
 
     ## [1] -0.04414844
 
-Nos dados acima *x* e *y* têm uma dependência direta e, entretanto,
-exibem uma correlação próxima de zero.
+Nos dados acima ![x](https://latex.codecogs.com/png.latex?x "x") e
+![y](https://latex.codecogs.com/png.latex?y "y") têm uma dependência
+direta e, entretanto, exibem uma correlação próxima de zero.
 
 Além disso você correlação não significa necessariamente uma relação de
 causa efeito. Ela pode ser um indício dessa relação, mas em princípio,
@@ -1055,10 +1093,18 @@ variáveis.
 
 A covariância de uma amostra é definida como:
 
-$$ s\_{xy} = COV(x,y) =\\frac{1}{n-1} \\sum\_{i}^{n}  (x\_i - \\bar{x})(y\_i - \\bar{y}) $$
+  
+![ s\_{xy} = COV(x,y) =\\frac{1}{n-1} \\sum\_{i}^{n} (x\_i -
+\\bar{x})(y\_i - \\bar{y})
+](https://latex.codecogs.com/png.latex?%20s_%7Bxy%7D%20%3D%20COV%28x%2Cy%29%20%3D%5Cfrac%7B1%7D%7Bn-1%7D%20%5Csum_%7Bi%7D%5E%7Bn%7D%20%20%28x_i%20-%20%5Cbar%7Bx%7D%29%28y_i%20-%20%5Cbar%7By%7D%29%20
+" s_{xy} = COV(x,y) =\\frac{1}{n-1} \\sum_{i}^{n}  (x_i - \\bar{x})(y_i - \\bar{y}) ")  
 e, da mesma forma, a covariância populacional é dada por:
 
-$$ \\sigma\_{xy} = COV(x,y) = \\frac{1}{n} \\sum\_{i}^{n} (x\_i - \\mu\_{x})(y\_i - \\mu\_{y}) $$
+  
+![ \\sigma\_{xy} = COV(x,y) = \\frac{1}{n} \\sum\_{i}^{n} (x\_i -
+\\mu\_{x})(y\_i - \\mu\_{y})
+](https://latex.codecogs.com/png.latex?%20%5Csigma_%7Bxy%7D%20%3D%20COV%28x%2Cy%29%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%7D%5E%7Bn%7D%20%28x_i%20-%20%5Cmu_%7Bx%7D%29%28y_i%20-%20%5Cmu_%7By%7D%29%20
+" \\sigma_{xy} = COV(x,y) = \\frac{1}{n} \\sum_{i}^{n} (x_i - \\mu_{x})(y_i - \\mu_{y}) ")  
 e talvez você tenha notado a semelhança dos cálculos de covariância e
 variância de uma única variável. A variância sendo idêntica a
 covariância de uma variável com ela mesma.
@@ -1066,7 +1112,10 @@ covariância de uma variável com ela mesma.
 O **coeficiente de determinação**, ou mais exatamente o **coeficiente de
 determinação de Pearson** pode ser então calculado como:
 
-$$ r\_{xy} = \\frac{COV(x,y)}{\\sigma(x) \\sigma(y)} $$
+  
+![ r\_{xy} = \\frac{COV(x,y)}{\\sigma(x) \\sigma(y)}
+](https://latex.codecogs.com/png.latex?%20r_%7Bxy%7D%20%3D%20%5Cfrac%7BCOV%28x%2Cy%29%7D%7B%5Csigma%28x%29%20%5Csigma%28y%29%7D%20
+" r_{xy} = \\frac{COV(x,y)}{\\sigma(x) \\sigma(y)} ")  
 E empregamos as funções `cov()` e `cor()` para obter esses valores com
 R.
 
@@ -1108,17 +1157,16 @@ myCars = Cars93[ , c('Price',"MPG.city", 'Horsepower')]
 pairs(myCars)
 ```
 
-![](PEA_Aula2_files/figure-markdown_github/unnamed-chunk-26-1.png)
+![](PEA_Aula2_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
-Referências
------------
+## Referências
 
 Devore, Jay L. **Probabilidade e Estatística para Engenharia e
 Ciências**. Trad. Solange Aparecida Visconte. Cengage, 2018.
 
 Navarro, Danielle, **Learning Statistics with R**, disponível em:
-<a href="https://learningstatisticswithr.com/" class="uri">https://learningstatisticswithr.com/</a>
-( LSR version 0.6 (pdf) ). Acesso: 26/02/2021.
+<https://learningstatisticswithr.com/> ( LSR version 0.6 (pdf) ).
+Acesso: 26/02/2021.
 
 Wickham, H., Grolemund, G. **R for Data Science**. O’Reilly Media, Inc.,
 2016.

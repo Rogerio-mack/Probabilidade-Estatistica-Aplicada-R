@@ -1,13 +1,16 @@
-Estatística Descritiva
-======================
+Probabilidade e Estatística - Exercícios 2
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Estatística Descritiva
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -60,37 +63,37 @@ head(df)
 
 **Solução**
 
-1.  Selecione somente os dados de 2014 e empregue eles nos exercícios a
+2.  Selecione somente os dados de 2014 e empregue eles nos exercícios a
     seguir. Verifique a quantidade de registros resultante.
 
 **Solução**
 
-1.  Qual a média de Expectativa de Vida para os países em
+3.  Qual a média de Expectativa de Vida para os países em
     desenvolvimento e desenvolvidos em 2014?
 
 **Solução**
 
-1.  Qual a média, mediana e quartis de BMI e Expectativa de Vida para os
+4.  Qual a média, mediana e quartis de BMI e Expectativa de Vida para os
     países desenvolvidos em 2014?
 
 **Solução**
 
-1.  Qual a média e desvio padrão para os valores de BMI e Expectativa de
+5.  Qual a média e desvio padrão para os valores de BMI e Expectativa de
     Vida para os países em desenvolvimento e desenvolvidos em 2014?
 
 **Solução**
 
-1.  Existe correlação significativa entre BMI e Expectativa de Vida para
+6.  Existe correlação significativa entre BMI e Expectativa de Vida para
     os desenvolvidos em 2014?
 
 **Solução**
 
-1.  E para países em desenvolvimento, existe correlação significativa
+7.  E para países em desenvolvimento, existe correlação significativa
     entre BMI e Expectativa de Vida em 2014?
 
 **Solução**
 
-1.  Leia os dados novamente com todos os anos. Existem *outliers* de BMI
+8.  Leia os dados novamente com todos os anos. Existem *outliers* de BMI
     e Expectativa de Vida no conjunto de todos os países? Se sim,
     quantos dados são outliers? (empregue o critério dos interquartis)
 
@@ -99,7 +102,7 @@ ausentes nos dados como fizemos no início do exercício.
 
 **Solução**
 
-1.  Qual a média de Expectativa de Vida com e sem *outliers* (lembre-se
+9.  Qual a média de Expectativa de Vida com e sem *outliers* (lembre-se
     de considerar aqui a base completa)?
 
 **Solução**
@@ -132,22 +135,22 @@ head(painters)
 
 **Solução**
 
-1.  Qual a *moda* das escolas de pintores?
+2.  Qual a *moda* das escolas de pintores?
 
 **Solução**
 
-1.  Quantos pintores estão acima da média em composição?
+3.  Quantos pintores estão acima da média em composição?
 
 **Solução**
 
-1.  Qual o pintor ou pintores com maior pontuação considerando todos os
+4.  Qual o pintor ou pintores com maior pontuação considerando todos os
     critérios? Não há muita surpresa aqui não?
 
 DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 **Solução**
 
-1.  Explore a mediana e média através das notas de Composição e Colour
+5.  Explore a mediana e média através das notas de Composição e Colour
     dos pintores.
 
 **Solução**
@@ -156,7 +159,7 @@ DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 1.  A mediana e desvio padrão são estatística que ajudam a compreender:
 
-<!-- -->
+<!-- end list -->
 
 1.  A centralidade e dispersão dos dados
 2.  A centralidade dos dados
@@ -166,9 +169,9 @@ DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 **Solução**
 
-1.  Um conjunto de dados com um desvio padrão alto:
+2.  Um conjunto de dados com um desvio padrão alto:
 
-<!-- -->
+<!-- end list -->
 
 1.  Está mais concentrado
 2.  É mais disperso
@@ -178,9 +181,9 @@ DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 **Solução**
 
-1.  Uma correlação, entre duas variáveis, próxima de zero indica que:
+3.  Uma correlação, entre duas variáveis, próxima de zero indica que:
 
-<!-- -->
+<!-- end list -->
 
 1.  As variáveis são independentes
 2.  As variáveis não tem relação
@@ -190,9 +193,9 @@ DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 **Solução**
 
-1.  Outliers nos dados ser encontrados por:
+4.  Outliers nos dados ser encontrados por:
 
-<!-- -->
+<!-- end list -->
 
 1.  Erros de medida
 2.  Erro na entrada dos dados
@@ -202,16 +205,16 @@ DICA: crie uma nota com a soma de todas as pontuações dos pintores.
 
 **Solução**
 
-1.  Sobre o desvio padrão:
+5.  Sobre o desvio padrão:
 
-<!-- -->
+<!-- end list -->
 
 1.  Diferentemente da variância encontra-se na mesma unidade que os
     dados
 2.  É igual ao quadrado da variância
 3.  É uma medida de dispersão dos dados São corretas:
 
-<!-- -->
+<!-- end list -->
 
 1.  Somente i
 2.  Somente i, ii

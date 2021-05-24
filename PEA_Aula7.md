@@ -1,20 +1,23 @@
-Regressão Linear
+Probabilidade e Estatística - Aula 7
 ================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Regressão Linear
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
 Aprenda aqui como fazer a aproximação de dados a uma função linear. Aqui
 você vai aprender como estimar os valores dos coeficientes para
-regressões simples e múltiplas. Aprenderá como avaliar quantitativamente
-esses modelos lineares (coeficiente de determinação, p-value dos
-coeficientes), criar linhas de tendências dos dados e aplicar esses
-modelos para fazer estimativa de valores com R.
+regressões simples e múltiplas. Aprenderá como avaliar
+quantitativamente esses modelos lineares (coeficiente de determinação,
+p-value dos coeficientes), criar linhas de tendências dos dados e
+aplicar esses modelos para fazer estimativa de valores com R.
 
-Introdução
-----------
+## Introdução
 
 Uma parte importante da inferência estatística diz respeito a predição
 de valores e classes de conjuntos de dados. Em estatística, para a
@@ -25,23 +28,27 @@ valores a partir de uma aproximação de linear de valores, e como avaliar
 a qualidade de diferentes modelos de regressão.
 
 Modelos de regressão são modelos estatísticos para predição de uma
-variável dependente *y* como uma função de uma ou mais variáveis
-independentes *X*. Esses modelos podem ser divididos em modelos de
-**regressão simples** e **múltipla**, conforme empregue uma única
-variável preditora *X* (simples) ou várias (múltipla). E ainda podemos
-encontrar modelos de **regressão linear** e **não linear**. Os modelos
-lineares aproximam a função *y* = *f*(*X*) de uma reta (regressão
-simples) ou um *hiperplano*, isto é, uma função linear com mais de uma
-dimensão. As regressões não lineares podem ser de vários tipos, como
-polinomial e exponencial, mas aqui nos limitaremos a estudar os métodos
-lineares simples e múltiplos.
+variável dependente ![y](https://latex.codecogs.com/png.latex?y "y")
+como uma função de uma ou mais variáveis independentes
+![X](https://latex.codecogs.com/png.latex?X "X"). Esses modelos podem
+ser divididos em modelos de **regressão simples** e **múltipla**,
+conforme empregue uma única variável preditora
+![X](https://latex.codecogs.com/png.latex?X "X") (simples) ou várias
+(múltipla). E ainda podemos encontrar modelos de **regressão linear** e
+**não linear**. Os modelos lineares aproximam a função
+![y=f(X)](https://latex.codecogs.com/png.latex?y%3Df%28X%29 "y=f(X)") de
+uma reta (regressão simples) ou um *hiperplano*, isto é, uma função
+linear com mais de uma dimensão. As regressões não lineares podem ser de
+vários tipos, como polinomial e exponencial, mas aqui nos limitaremos a
+estudar os métodos lineares simples e múltiplos.
 
-Calculando os Coeficientes de uma Regressão Simples
----------------------------------------------------
+## Calculando os Coeficientes de uma Regressão Simples
 
 No caso mais simples, da regressão linear simples, nosso problema
-consiste, dados um conjunto de pontos (*X*, *y*), como determinar os
-coeficientes da reta que melhor aproxima *y*?
+consiste, dados um conjunto de pontos
+![(X,y)](https://latex.codecogs.com/png.latex?%28X%2Cy%29 "(X,y)"), como
+determinar os coeficientes da reta que melhor aproxima
+![y](https://latex.codecogs.com/png.latex?y "y")?
 
 ``` r
 set.seed(1234)
@@ -62,42 +69,81 @@ lines(x, y4, lty=3)
 lines(x, y5, lty=3)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 Você não precisa se preocupar com esse código agora. Retomamos o uso da
 função `lm()` mais adiante. De qualquer modo, aparentemente podemos
 traçar várias retas que aproximam de diferentes modos o conjunto de
 pontos e a regressão linear simples é definida pela reta que minimiza o
-erro ou a distância dos pontos *y* dos valores preditos *ŷ*.
+erro ou a distância dos pontos
+![y](https://latex.codecogs.com/png.latex?y "y") dos valores preditos
+![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D
+"\\hat{y}").
 
-De modo geral, data um conjunto de pontos
-(*x*<sub>*i*</sub>, *y*<sub>*i*</sub>), *i* = 0, ..., *n* queremos
-buscar a reta *(̂**y*) = *a* + *b**x* que reduz o erro das estimativas de
-*y*. Esse erro é simplesmente a distância dos pontos *y* e *ŷ* e podemos
-escrever esse erro em função de *a* e *b*, que ainda não conhecemos os
-valores:
+De modo geral, data um conjunto de pontos ![(x\_i,y\_i),
+i=0,...,n](https://latex.codecogs.com/png.latex?%28x_i%2Cy_i%29%2C%20i%3D0%2C...%2Cn
+"(x_i,y_i), i=0,...,n") queremos buscar a reta ![\\hat(y) = a + b
+x](https://latex.codecogs.com/png.latex?%5Chat%28y%29%20%3D%20a%20%2B%20b%20x
+"\\hat(y) = a + b x") que reduz o erro das estimativas de
+![y](https://latex.codecogs.com/png.latex?y "y"). Esse erro é
+simplesmente a distância dos pontos
+![y](https://latex.codecogs.com/png.latex?y "y") e
+![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D
+"\\hat{y}") e podemos escrever esse erro em função de
+![a](https://latex.codecogs.com/png.latex?a "a") e
+![b](https://latex.codecogs.com/png.latex?b "b"), que ainda não
+conhecemos os valores:
 
-$$ S(a,b) = \\sum\_{i=1}^{n}(y\_i - a - b x\_i)^2 $$
+  
+![ S(a,b) = \\sum\_{i=1}^{n}(y\_i - a - b x\_i)^2
+](https://latex.codecogs.com/png.latex?%20S%28a%2Cb%29%20%3D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%28y_i%20-%20a%20-%20b%20x_i%29%5E2%20
+" S(a,b) = \\sum_{i=1}^{n}(y_i - a - b x_i)^2 ")  
 
-O ponto de mínimo (valores *a* e *b* dos coeficientes da reta) dessa
-função pode ser então obtido buscando o valor das derivadas zero.
+O ponto de mínimo (valores ![a](https://latex.codecogs.com/png.latex?a
+"a") e ![b](https://latex.codecogs.com/png.latex?b "b") dos coeficientes
+da reta) dessa função pode ser então obtido buscando o valor das
+derivadas zero.
 
-$$ \\partial S / \\partial a =  -2 \\sum\_{i=1}^{n}(y\_i - a - b x\_i) = 0$$
+  
+![ \\partial S / \\partial a = -2 \\sum\_{i=1}^{n}(y\_i - a - b x\_i)
+= 0](https://latex.codecogs.com/png.latex?%20%5Cpartial%20S%20%2F%20%5Cpartial%20a%20%3D%20%20-2%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%28y_i%20-%20a%20-%20b%20x_i%29%20%3D%200
+" \\partial S / \\partial a =  -2 \\sum_{i=1}^{n}(y_i - a - b x_i) = 0")  
 
-$$ \\partial S / \\partial b =  -2 \\sum\_{i=1}^{n}x\_i(y\_i - a - b x\_i) = 0 $$
+  
+![ \\partial S / \\partial b = -2 \\sum\_{i=1}^{n}x\_i(y\_i - a - b
+x\_i) = 0
+](https://latex.codecogs.com/png.latex?%20%5Cpartial%20S%20%2F%20%5Cpartial%20b%20%3D%20%20-2%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7Dx_i%28y_i%20-%20a%20-%20b%20x_i%29%20%3D%200%20
+" \\partial S / \\partial b =  -2 \\sum_{i=1}^{n}x_i(y_i - a - b x_i) = 0 ")  
 Resolvendo-se esse sistema de equações você irá obter:
 
-*a* = *ȳ* − *b**x̄*
-onde *ȳ* e *x̄* são a média dos valores *y*<sub>*i*</sub> e
-*x*<sub>*i*</sub>, e:
+  
+![ a = \\bar{y} - b \\bar{x}
+](https://latex.codecogs.com/png.latex?%20a%20%3D%20%5Cbar%7By%7D%20-%20b%20%5Cbar%7Bx%7D%20
+" a = \\bar{y} - b \\bar{x} ")  
+onde ![\\bar{y}](https://latex.codecogs.com/png.latex?%5Cbar%7By%7D
+"\\bar{y}") e
+![\\bar{x}](https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D
+"\\bar{x}") são a média dos valores
+![y\_i](https://latex.codecogs.com/png.latex?y_i "y_i") e
+![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i"), e:
 
-$$ b = \\frac{ \\sum\_{i=1}^{n} (x\_i - \\bar{x}) (y\_i - \\bar{y})}{\\sum\_{i=1}^{n} (x\_i - \\bar{x})^2 } $$
+  
+![ b = \\frac{ \\sum\_{i=1}^{n} (x\_i - \\bar{x}) (y\_i -
+\\bar{y})}{\\sum\_{i=1}^{n} (x\_i - \\bar{x})^2 }
+](https://latex.codecogs.com/png.latex?%20b%20%3D%20%5Cfrac%7B%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%28x_i%20-%20%5Cbar%7Bx%7D%29%20%28y_i%20-%20%5Cbar%7By%7D%29%7D%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%28x_i%20-%20%5Cbar%7Bx%7D%29%5E2%20%7D%20
+" b = \\frac{ \\sum_{i=1}^{n} (x_i - \\bar{x}) (y_i - \\bar{y})}{\\sum_{i=1}^{n} (x_i - \\bar{x})^2 } ")  
 
 Os valores dessa expressão não devem ser estranhos para você. De fato já
-conhecemos esses valores, eles são a *c**o**v*(*x*, *y*) e a
-*v**a**r*(*x*) e, desse modo, podemos escrever simplesmente:
+conhecemos esses valores, eles são a
+![cov(x,y)](https://latex.codecogs.com/png.latex?cov%28x%2Cy%29
+"cov(x,y)") e a
+![var(x)](https://latex.codecogs.com/png.latex?var%28x%29 "var(x)") e,
+desse modo, podemos escrever simplesmente:
 
-$$ b = \\frac{cov(x,y)}{var(x)}  $$
+  
+![ b = \\frac{cov(x,y)}{var(x)}
+](https://latex.codecogs.com/png.latex?%20b%20%3D%20%5Cfrac%7Bcov%28x%2Cy%29%7D%7Bvar%28x%29%7D%20%20
+" b = \\frac{cov(x,y)}{var(x)}  ")  
 
 E empregando o conjunto de pontos gerado acima podemos verificar os
 coeficientes produzidos por essas expressões:
@@ -114,9 +160,13 @@ a = mean(y1) - b*mean(x); a
 
     ## [1] -26.40464
 
-Assim determinamos a reta que melhor estima os valores de *y*:
+Assim determinamos a reta que melhor estima os valores de
+![y](https://latex.codecogs.com/png.latex?y "y"):
 
-*y* = *a* + *b**x* =  − 26.40 + 2.43*x*
+  
+![ y = a + bx = -26.40 + 2.43 x
+](https://latex.codecogs.com/png.latex?%20y%20%3D%20a%20%2B%20bx%20%3D%20-26.40%20%2B%202.43%20x%20
+" y = a + bx = -26.40 + 2.43 x ")  
 
 ``` r
 library(latex2exp)
@@ -137,7 +187,7 @@ lines(x, y2, lwd=2, col='red')
 text(30, 120, TeX('$y = -26.40 + 2.43 x$'))
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 E o erro, é dado por:
 
@@ -147,41 +197,57 @@ sum( (y1 - y2)^2 )
 
     ## [1] 234099.5
 
-É o menor erro que pode ser obtido para *y* por uma aproximação linear.
+É o menor erro que pode ser obtido para
+![y](https://latex.codecogs.com/png.latex?y "y") por uma aproximação
+linear.
 
 Esse cálculo dos coeficientes pode ser feito de forma mais simples em R
 com a função `lm()` (*linear model*) que empregamos acima. Note ainda
-que aqui empregamos a notação *y* = *a* + *b**x*. Isso é diferente da
-notação *y* = *a**x* + *b* que você em geral aprende nos cursos do
-ensino médio ao estudar funções lineares e retas. Mas trata-se apenas de
-convenções diferentes, em ambos os casos temos da forma linear temos
-coeficientes lineares para cada variável preditora e um único
-coeficiente constante, referente o valor de *y* (*intercept*) quando
-todas as variáveis preditoras são nulas. Em estatística, é mais comum
-encontrarmos a primeira forma e, em matemática geral a segunda. Desse
-modo o ideal é que você *entenda* quais são os coeficientes das
-variáveis e o *intercept* para não se confundir com as notações.
+que aqui empregamos a notação ![y = a +
+bx](https://latex.codecogs.com/png.latex?y%20%3D%20a%20%2B%20bx
+"y = a + bx"). Isso é diferente da notação ![y = ax +
+b](https://latex.codecogs.com/png.latex?y%20%3D%20ax%20%2B%20b
+"y = ax + b") que você em geral aprende nos cursos do ensino médio ao
+estudar funções lineares e retas. Mas trata-se apenas de convenções
+diferentes, em ambos os casos temos da forma linear temos coeficientes
+lineares para cada variável preditora e um único coeficiente constante,
+referente o valor de ![y](https://latex.codecogs.com/png.latex?y "y")
+(*intercept*) quando todas as variáveis preditoras são nulas. Em
+estatística, é mais comum encontrarmos a primeira forma e, em
+matemática geral a segunda. Desse modo o ideal é que você *entenda*
+quais são os coeficientes das variáveis e o *intercept* para não se
+confundir com as notações.
 
-Regressao Linear, caso geral
-----------------------------
+## Regressao Linear, caso geral
 
 O resultado anterior de regressão simples pode ser generalizado para os
 casos em que você encontra mais do que uma variável preditora. Um modelo
-linear aproxima o valor de variável objetivo *Y* a partir de uma
-combinação linear das variáveis preditoras *X*.
+linear aproxima o valor de variável objetivo
+![Y](https://latex.codecogs.com/png.latex?Y "Y") a partir de uma
+combinação linear das variáveis preditoras
+![X](https://latex.codecogs.com/png.latex?X "X").
 
-*Ŷ* = *a*<sub>0</sub> + *a*<sub>1</sub>*X*<sub>1</sub> + *a*<sub>2</sub>*X*<sub>2</sub> + ... + *a*<sub>*n*</sub>*X*<sub>*n*</sub>
+  
+![ \\widehat Y = a\_0 + a\_{1} X\_{1} + a\_{2} X\_{2} + ... + a\_{n}
+X\_{n}
+](https://latex.codecogs.com/png.latex?%20%20%5Cwidehat%20Y%20%3D%20a_0%20%2B%20a_%7B1%7D%20X_%7B1%7D%20%2B%20a_%7B2%7D%20X_%7B2%7D%20%2B%20...%20%2B%20a_%7Bn%7D%20X_%7Bn%7D%20
+"  \\widehat Y = a_0 + a_{1} X_{1} + a_{2} X_{2} + ... + a_{n} X_{n} ")  
 
-A cada variável preditora corresponde um coeficiente *a*<sub>*n*</sub>,
-havendo um coeficiente independente que corresponte ao valor de *Ŷ* para
-*X* = 0 (*intercept*).
+A cada variável preditora corresponde um coeficiente
+![a\_n](https://latex.codecogs.com/png.latex?a_n "a_n"), havendo um
+coeficiente independente que corresponte ao valor de ![\\widehat
+Y](https://latex.codecogs.com/png.latex?%5Cwidehat%20Y "\\widehat Y")
+para ![X=0](https://latex.codecogs.com/png.latex?X%3D0 "X=0")
+(*intercept*).
 
-Os coeficientes *a*<sub>*n*</sub> podem ser obtidos minimizando-se a
-soma da distância entre os valores reais *Y* e os valores estimados *Ŷ*
-o que, em geral é feito a partir do método dos mínimos quadrados.
+Os coeficientes ![a\_n](https://latex.codecogs.com/png.latex?a_n "a_n")
+podem ser obtidos minimizando-se a soma da distância entre os valores
+reais ![Y](https://latex.codecogs.com/png.latex?Y "Y") e os valores
+estimados ![\\widehat
+Y](https://latex.codecogs.com/png.latex?%5Cwidehat%20Y "\\widehat Y") o
+que, em geral é feito a partir do método dos mínimos quadrados.
 
-Coeficiente de Determinação, *R*<sup>2</sup>
---------------------------------------------
+## Coeficiente de Determinação, ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2")
 
 Você provavelmente lembra da figura abaixo que vimos ao estudar a
 visualização de dados.
@@ -258,16 +324,26 @@ visualização de dados.
     ## (Intercept) 3.0017273  1.1239211 2.670763 0.025590425
     ## x4          0.4999091  0.1178189 4.243028 0.002164602
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 Ela ajuda a entender a importância do coeficiente de determinação, ou
-*R*<sup>2</sup> ou ainda *R* − *S**q**u**a**r**e*. Veja que para
-determinação dos coeficientes de uma regressão linear de um conjunto de
-pontos (*X*, *y*) basta termos os valores médios de cada variável, *X̄* e
-*ȳ*, a variância *v**a**r*(*X*) e a covariância *c**o**v*(*X*, *y*).
-Como essas estatísticas podem ser obtidas para quaiquer conjuntos de
-pontos, **podemos calcular a regressão de quaisquer conjuntos de pontos,
-mesmo que eles não tenham um comportamento linear!!!**.
+![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2") ou ainda
+![R-Square](https://latex.codecogs.com/png.latex?R-Square "R-Square").
+Veja que para determinação dos coeficientes de uma regressão linear de
+um conjunto de pontos
+![(X,y)](https://latex.codecogs.com/png.latex?%28X%2Cy%29 "(X,y)") basta
+termos os valores médios de cada variável,
+![\\bar{X}](https://latex.codecogs.com/png.latex?%5Cbar%7BX%7D
+"\\bar{X}") e
+![\\bar{y}](https://latex.codecogs.com/png.latex?%5Cbar%7By%7D
+"\\bar{y}"), a variância
+![var(X)](https://latex.codecogs.com/png.latex?var%28X%29 "var(X)") e a
+covariância
+![cov(X,y)](https://latex.codecogs.com/png.latex?cov%28X%2Cy%29
+"cov(X,y)"). Como essas estatísticas podem ser obtidas para quaiquer
+conjuntos de pontos, **podemos calcular a regressão de quaisquer
+conjuntos de pontos, mesmo que eles não tenham um comportamento
+linear\!\!\!**.
 
 Isso fica evidente no quarteto de Anscombe em que os valores médios e
 variâncias dos pontos diferem somente a partir da 3a casa decimal. Todos
@@ -280,24 +356,37 @@ conseguimos visualizar a aproximação como fizemos acima com o quarteto
 de Anscombe.
 
 O Coeficiente de Determinação, Coeficiente de Correlação, ou ainda
-*R*−Square é uma medida de \[0, 1\] que indica o quanto um modelo linear
-explica um conjunto de dados. Quanto mais próximo de 1, mais os dados se
-aproximam de um modelo linear.
+![R-](https://latex.codecogs.com/png.latex?R- "R-")Square é uma medida
+de ![\[0,1\]](https://latex.codecogs.com/png.latex?%5B0%2C1%5D "[0,1]")
+que indica o quanto um modelo linear explica um conjunto de dados.
+Quanto mais próximo de 1, mais os dados se aproximam de um modelo
+linear.
 
-$$ R^2 = 1 - \\frac{SS\_e}{SS\_{total}} $$
+  
+![ R^2 = 1 - \\frac{SS\_e}{SS\_{total}}
+](https://latex.codecogs.com/png.latex?%20R%5E2%20%3D%201%20-%20%5Cfrac%7BSS_e%7D%7BSS_%7Btotal%7D%7D%20
+" R^2 = 1 - \\frac{SS_e}{SS_{total}} ")  
 
 onde
 
-*S**S*<sub>*e*</sub> = ∑(*y*<sub>*i*</sub> − *ŷ*<sub>*i*</sub>)<sup>2</sup>
+  
+![SS\_e = \\sum (y\_i - \\widehat y\_i )^2
+](https://latex.codecogs.com/png.latex?SS_e%20%3D%20%5Csum%20%28y_i%20-%20%5Cwidehat%20y_i%20%29%5E2%20
+"SS_e = \\sum (y_i - \\widehat y_i )^2 ")  
 é o (erro) *resíduo* e,
 
-*S**S*<sub>*t**o**t**a**l*</sub> = ∑(*y*<sub>*i*</sub> − *ȳ*)<sup>2</sup>
+  
+![SS\_{total} = \\sum (y\_i - \\bar y )^2
+](https://latex.codecogs.com/png.latex?SS_%7Btotal%7D%20%3D%20%5Csum%20%28y_i%20-%20%5Cbar%20y%20%29%5E2%20
+"SS_{total} = \\sum (y_i - \\bar y )^2 ")  
 
 o *erro total*.
 
 Basicamente essa é um medida de proporção que verifica o quanto
 variância dos dados está representada no modelo com relação ao modelo
-trivial *y* = *x̄*.
+trivial ![y =
+\\bar{x}](https://latex.codecogs.com/png.latex?y%20%3D%20%5Cbar%7Bx%7D
+"y = \\bar{x}").
 
 <br> <br> <br>
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Coefficient_of_Determination.svg"  width=500, align="center">
@@ -306,22 +395,26 @@ trivial *y* = *x̄*.
 À esquerda, em vermelho, as variâncias com relação ao modelo trivial e,
 à direita, as variâncias do modelo de regressão (em azul).
 
-*p* − *v**a**l**u**e* dos Coeficientes
---------------------------------------
+## ![p-value](https://latex.codecogs.com/png.latex?p-value "p-value") dos Coeficientes
 
 Outra medida importante na análise da qualidade de uma regressão são os
 *p-value* dos coeficientes. Assumindo a hipótese nula do coeficiente ser
 igual a zero, buscamos coeficientes cujo *p-value* rejeitem a hipótese
 nula.
 
-*H*<sub>0</sub> : *a*<sub>*i*</sub> = 0
-*H*<sub>*a*</sub> : *a*<sub>*i*</sub> ≠ 0
+  
+![ H\_0: a\_i = 0
+](https://latex.codecogs.com/png.latex?%20H_0%3A%20a_i%20%3D%200%20
+" H_0: a_i = 0 ")  
+  
+![ H\_a: a\_i \\neq 0
+](https://latex.codecogs.com/png.latex?%20H_a%3A%20a_i%20%5Cneq%200%20
+" H_a: a_i \\neq 0 ")  
 
 Esses valores são apresentados no resumo da função `lm()` e você verá
 mais sobre isso adiante.
 
-Intervalo de Confiança dos Coeficientes
----------------------------------------
+## Intervalo de Confiança dos Coeficientes
 
 Por último, também podemos analisar os Intervalos de Confiança dos
 Coeficientes. os Intervalos de Confiança dos Coeficientes possuem duas
@@ -330,17 +423,17 @@ definições equivalentes:
 1.  O intervalo é o conjunto de valores para os quais um teste de
     hipótese para o nível de 5% não pode ser rejeitado.
 2.  O intervalo tem uma probabilidade de 95% de conter o verdadeiro
-    valor de *a*<sub>*i*</sub> ou ainda, em 95% de todas as amostras que
-    poderiam ser coletadas, o intervalo de confiança cobrirá o valor
-    real de *a*<sub>*i*</sub>.
+    valor de ![a\_i](https://latex.codecogs.com/png.latex?a_i "a_i") ou
+    ainda, em 95% de todas as amostras que poderiam ser coletadas, o
+    intervalo de confiança cobrirá o valor real de
+    ![a\_i](https://latex.codecogs.com/png.latex?a_i "a_i").
 
-O *R*<sup>2</sup>, o p-value dos coeficientes e seus intervalos de
-confiança, resumem os indicadores que devem ser analisados em uma
-regressão linear e constituem a base da **validação dos modelos de
-regressão linear**.
+O ![R^2](https://latex.codecogs.com/png.latex?R%5E2 "R^2"), o p-value
+dos coeficientes e seus intervalos de confiança, resumem os indicadores
+que devem ser analisados em uma regressão linear e constituem a base da
+**validação dos modelos de regressão linear**.
 
-Exemplo: `mtcars`
------------------
+## Exemplo: `mtcars`
 
 Vamos verificar alguns desses conceitos sobre a base `mtcars`.
 
@@ -364,7 +457,7 @@ atributos.
 pairs(mtcars[ ,c('mpg','hp','wt','disp')])
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Podemos então avaliar as relações lineares, por exemplo de `wt` (weight,
 ou peso dos veículos) e `mpg`, ou `hp` e `mpg`.
@@ -375,7 +468,7 @@ plot(mtcars$wt, mtcars$mpg)
 plot(mtcars$hp, mtcars$mpg)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 e então calcular a regressão linear.
 
@@ -455,9 +548,10 @@ summary(r2)
 
 Qual dos dois modelos é melhor para obtermos uma predição dos valores de
 `mpg`. Observando as estatísticas dos modelos acima você pode notar que
-`wt` (o peso dos veículos) tem um coeficiente de determinação
-*R*<sup>2</sup> = 0.7528, maior que da regressão com `hp` e é, portanto
-um melhor modelo. E você ainda pode observar os valores dos p-values dos
+`wt` (o peso dos veículos) tem um coeficiente de determinação ![R^2
+= 0.7528](https://latex.codecogs.com/png.latex?R%5E2%20%3D%200.7528
+"R^2 = 0.7528"), maior que da regressão com `hp` e é, portanto um melhor
+modelo. E você ainda pode observar os valores dos p-values dos
 coeficientes, todos menores que 0.05 e, portanto relevantes (em destaque
 no report com ’\*\*\*’).
 
@@ -500,11 +594,15 @@ summary(fit)
     ## Multiple R-squared:  0.8268, Adjusted R-squared:  0.8148 
     ## F-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12
 
-Esse modelo apresenta um *R*<sup>2</sup> = 0.8268 ainda melhor que o
-modelo anterior e parece ser, portanto, um modelo mais adequado para
-predições de `mpg`.
+Esse modelo apresenta um ![R^2
+= 0.8268](https://latex.codecogs.com/png.latex?R%5E2%20%3D%200.8268
+"R^2 = 0.8268") ainda melhor que o modelo anterior e parece ser,
+portanto, um modelo mais adequado para predições de `mpg`.
 
-*m**p**g* =  − 3.87*w**t* − 0.03*h**p* + 37.22
+  
+![ mpg = -3.87 wt -0.03 hp + 37.22
+](https://latex.codecogs.com/png.latex?%20mpg%20%3D%20%20-3.87%20wt%20-0.03%20hp%20%2B%2037.22%20
+" mpg =  -3.87 wt -0.03 hp + 37.22 ")  
 Podemos agora empregar esses coeficientes para estimar `mpg` para novos
 valores de `wt` e `hp`, por exemplo para os valores 4.0 e 150
 respectivamente.
@@ -549,8 +647,7 @@ data.frame(wt=c(4),hp=c(150))
     ##   wt  hp
     ## 1  4 150
 
-Exemplo: `faithful`
--------------------
+## Exemplo: `faithful`
 
 Vamos considerar os valores da base de dados `faithful` sobre duas
 medidas de erupções.
@@ -577,7 +674,7 @@ help("faithful")
 plot(faithful$waiting,faithful$eruptions)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 Podemos então buscar o modelo de regressão linear dessas variaveis,
 
@@ -610,10 +707,10 @@ plot(faithful$waiting,faithful$eruptions)
 abline(coefficients(fit),col=2)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-17-1.png) A
-análise do gráfico não garante que esse seja um modelo adequado para
-*modelar* os valores de `eruptions` a partir de `waiting`. Para isso
-vamos analisar as estatíticas do modelo.
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-17-1.png)<!-- --> A análise
+do gráfico não garante que esse seja um modelo adequado para *modelar*
+os valores de `eruptions` a partir de `waiting`. Para isso vamos
+analisar as estatíticas do modelo.
 
 ``` r
 summary(fit)
@@ -638,9 +735,11 @@ summary(fit)
     ## Multiple R-squared:  0.8115, Adjusted R-squared:  0.8108 
     ## F-statistic:  1162 on 1 and 270 DF,  p-value: < 2.2e-16
 
-Com o *R*<sup>2</sup> = 0.81 sendo um valor adequado, podemos então
-empregar o modelo para predição de `eruptions` para novos valores de
-`waiting`, por exemplo 80 e 110.
+Com o ![R^2
+= 0.81](https://latex.codecogs.com/png.latex?R%5E2%20%3D%200.81
+"R^2 = 0.81") sendo um valor adequado, podemos então empregar o modelo
+para predição de `eruptions` para novos valores de `waiting`, por
+exemplo 80 e 110.
 
 ``` r
 newdata = data.frame(waiting=c(80,110))
@@ -651,8 +750,7 @@ sprintf('Valor de mpg = %0.2f', prediction)
 
     ## [1] "Valor de mpg = 4.18" "Valor de mpg = 6.45"
 
-Covariância, Correlação e cor.test
-==================================
+# Covariância, Correlação e cor.test
 
 O coeficiente de determinação é calculado sobre o modelo de regressão.
 Mas é comum, antes de calcularmos o modelo, verificar previamente a
@@ -700,8 +798,7 @@ NÃO são significativamente relacionados linearmente) e, portanto,
 aceitamos a hipótese alternativa de que há uma relação linear entre
 eles.
 
-Regressão múltipla
-------------------
+## Regressão múltipla
 
 O modelo acima pode ser aplicado diretamente a modelos de regressão
 linear múltipla adicionando à fórmula os atributos de cada variável de
@@ -709,8 +806,7 @@ entrada.
 
     fit = lm(y ~ atributo1 + atributo2 + ... , data=data)
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício **RESOLVIDO**
 
@@ -762,11 +858,14 @@ summary(fit)
     ## Multiple R-squared:  0.9136, Adjusted R-squared:  0.8983 
     ## F-statistic:  59.9 on 3 and 17 DF,  p-value: 3.016e-09
 
-Portanto:
-*s**t**a**c**k*.*l**o**s**s* =  − 39.92 + 0.7156*A**i**r*.*F**l**o**w* + 1.2953*W**a**t**e**r*.*T**e**m**p* +  − 0.1521*A**c**i**d*.*C**o**n**c*.
+Portanto:   
+![ stack.loss = -39.92 + 0.7156 Air.Flow + 1.2953 Water.Temp + -0.1521
+Acid.Conc.
+](https://latex.codecogs.com/png.latex?%20stack.loss%20%3D%20-39.92%20%2B%200.7156%20Air.Flow%20%2B%201.2953%20Water.Temp%20%2B%20%20-0.1521%20Acid.Conc.%20%20
+" stack.loss = -39.92 + 0.7156 Air.Flow + 1.2953 Water.Temp +  -0.1521 Acid.Conc.  ")  
 \#\#\# Exercício **RESOLVIDO** Faça uma predição do valor de
-`stock.loss` para os valores de
-`Air.Flow=72, Water.Temp=20, Acid.Conc=85`.
+`stock.loss` para os valores de `Air.Flow=72, Water.Temp=20,
+Acid.Conc=85`.
 
 ``` r
 newdata = data.frame(Air.Flow=62, Water.Temp=23, Acid.Conc.=87)
@@ -878,7 +977,7 @@ Construa um modelo de regressão para:
 plot(df$FUELCONSUMPTION_COMB, df$CO2EMISSIONS)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-28-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 ``` r
 fit = lm( CO2EMISSIONS ~ FUELCONSUMPTION_COMB, data=df)
@@ -909,7 +1008,7 @@ plot(df[,c('FUELCONSUMPTION_COMB','CO2EMISSIONS')])
 abline(coefficients(fit),col=2)
 ```
 
-![](PEA_Aula7_files/figure-markdown_github/unnamed-chunk-30-1.png)
+![](PEA_Aula7_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 ### Exercício
 
@@ -956,7 +1055,10 @@ summary(fit)
     ## Multiple R-squared:  0.8582, Adjusted R-squared:  0.8579 
     ## F-statistic:  3220 on 2 and 1064 DF,  p-value: < 2.2e-16
 
-*C**O*2*E**M**I**S**S**I**O**N**S* = 78.30 + 9.73*F**U**E**L**C**O**N**S**U**M**P**T**I**O**N*<sub>*C*</sub>*O**M**B* + 19.49*E**N**G**I**N**E**S**I**Z**E*
+  
+![ CO2EMISSIONS = 78.30 + 9.73 FUELCONSUMPTION\_COMB + 19.49 ENGINESIZE
+](https://latex.codecogs.com/png.latex?%20CO2EMISSIONS%20%3D%2078.30%20%2B%209.73%20FUELCONSUMPTION_COMB%20%2B%2019.49%20ENGINESIZE%20
+" CO2EMISSIONS = 78.30 + 9.73 FUELCONSUMPTION_COMB + 19.49 ENGINESIZE ")  
 
 E é um modelo melhor com R-Squared = 0.85.
 
@@ -973,20 +1075,15 @@ predict(fit,newdata)
     ##       1 
     ## 214.599
 
-Referências
------------
+## Referências
 
 Navarro, Danielle, **Learning Statistics with R**, disponível em:
-<a href="https://learningstatisticswithr.com/" class="uri">https://learningstatisticswithr.com/</a>
-( LSR version 0.6 (pdf) ). Acesso: 26/02/2021. Alternativamente em
-formato bookdown:
-<a href="https://learningstatisticswithr.com/book/" class="uri">https://learningstatisticswithr.com/book/</a>
-Acesso: 07/03/2021.
+<https://learningstatisticswithr.com/> ( LSR version 0.6 (pdf) ).
+Acesso: 26/02/2021. Alternativamente em formato bookdown:
+<https://learningstatisticswithr.com/book/> Acesso: 07/03/2021.
 
 Anunciação, Luis, **Conceitos e análises estatísticas com R e JASP**,
-disponível em:
-<a href="https://anovabr.github.io/mqt/" class="uri">https://anovabr.github.io/mqt/</a>
-Acesso: 10/04/2021.
+disponível em: <https://anovabr.github.io/mqt/> Acesso: 10/04/2021.
 
 Ferreira, Eric Batista, Oliveira, Marcelo Silva de. **Introdução à
 Estatística com R**. Editora Universidade Federal de Alfenas, 2020.

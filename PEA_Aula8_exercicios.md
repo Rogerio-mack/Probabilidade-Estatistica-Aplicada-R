@@ -1,13 +1,16 @@
-Regressão Logística
-===================
+Probabilidade e Estatística - Aula 8
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Regressão Logística
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -15,15 +18,15 @@ Exercícios
     de `mtcars` como automáticos e não automáticos (atributo `am`),
     tendo como base as variáveis preditoras `hp`, e peso, `wt`. É o
     mesmo que criamos no material de teoria, mas agora, tente criar o
-    modelo por conta própria!
+    modelo por conta própria\!
 
 **Solução**
 
-1.  Empregue o modelo obtido para fazer predição de TODOS os veículos de
+2.  Empregue o modelo obtido para fazer predição de TODOS os veículos de
     `mtcars`. Compare os valores da predição com os valores reais da
     base. Verifique o número de acertos e erros do modelo.
 
-<!-- -->
+<!-- end list -->
 
 1.  Quantos veículos classificados corretamente?
 2.  Qual o percentual de acerto?
@@ -155,8 +158,8 @@ logística sobre esse valor.
 
 1.2. Estime a probabilidade (na verdade a ‘chance logística’, isto é o
 valor de retorno da função logística) de um veículo com
-‘FUELCONSUMPTION\_COMB’=9, ‘CO2EMISSIONS’=180 ser um veículo de gasolina
-especial ‘X’.
+‘FUELCONSUMPTION\_COMB’=9, ‘CO2EMISSIONS’=180 ser um veículo de
+gasolina especial ‘X’.
 
 **solução**
 
@@ -200,8 +203,8 @@ head(bio)
     ## 6  8 10 10  8  7 10  9  7  1     1
 
 Implemente um modelo logístico para classificação “benign” ou
-“malignant” das instâncias de bio. Compare os valores da sua predição
-com os valores reais da base.
+“malignant” das instâncias de bio. Compare os valores da sua
+predição com os valores reais da base.
 
 Dica: para usar todos os atributos de entrada empregue ‘.’ no lugar das
 variáveis de entrada.

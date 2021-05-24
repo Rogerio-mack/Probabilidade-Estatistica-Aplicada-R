@@ -1,13 +1,16 @@
-Distribuições de Probabilidade
-==============================
+Probabilidade e Estatística - Aula 4
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Distribuições de Probabilidade
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 ### Exercício 1
 
@@ -20,14 +23,14 @@ Exercícios
 
 **Solução**
 
-1.  Mensalmente a empresa vai sortear grupos de 100 clientes e enviar
+2.  Mensalmente a empresa vai sortear grupos de 100 clientes e enviar
     brindes para as clientes do sexo feminino. Quantos brindes para
     mulheres devem ser comprados para garantir em 95% dos grupos
     sorteados?
 
 **Solução**
 
-1.  Mensalmente a empresa vai sortear grupos de 100 clientes e enviar
+3.  Mensalmente a empresa vai sortear grupos de 100 clientes e enviar
     brindes para as clientes do sexo feminino. Dentre os brindes haverá
     viagem em grupo. Há entretanto uma limitação de 18 passageiros para
     o pacote de viagem. Qual o percentual de grupos deve ser atendido
@@ -35,7 +38,7 @@ Exercícios
 
 **Solução**
 
-1.  A empresa deveria rever a campanha de viagens, por exemplo incluindo
+4.  A empresa deveria rever a campanha de viagens, por exemplo incluindo
     mais um transporte para 18 passageiros? Se sim, qual o percentual
     passaria a ser atendido.
 
@@ -44,19 +47,19 @@ Exercícios
 ### Exercício 2
 
 1.  Uma bateria (pilha) tem duração média de 60 horas com uma
-    distribuição normal desvio padrão de 3 horas. Qual é a probabilidade
-    de uma bateria durar menos de 65 horas?
+    distribuição normal desvio padrão de 3 horas. Qual é a
+    probabilidade de uma bateria durar menos de 65 horas?
 
 **Dica** menos de 65h = até 65h (estamos trabalhando com dados
 contínuos)
 
 **Solução**
 
-1.  Qual a probabilidade da pilha durar mais que a média?
+2.  Qual a probabilidade da pilha durar mais que a média?
 
 **Solução**
 
-1.  Qual a probabilidade da pilha durar mais que 65h?
+3.  Qual a probabilidade da pilha durar mais que 65h?
 
 **Solução**
 
@@ -73,7 +76,7 @@ contínuos)
 
 **Solução**
 
-1.  Quantos servidores devem apresentar falha no terceiro ano?
+2.  Quantos servidores devem apresentar falha no terceiro ano?
 
 **Solução**
 
@@ -87,24 +90,24 @@ contínuos)
 
 **Solução**
 
-1.  Qual é a porcentagem de alunos com até 70 pontos no exame?
+2.  Qual é a porcentagem de alunos com até 70 pontos no exame?
 
 **Solução**
 
-1.  Qual a nota dos alunos abaixo e acima dos percentis de 10% e 90% de
+3.  Qual a nota dos alunos abaixo e acima dos percentis de 10% e 90% de
     notas?
 
 **Dica** empregue `round()` para arredondar o valor para pontos inteiros
 
 **Solução**
 
-1.  Qual a nota de corte para abranger 75% dos candidatos para uma
+4.  Qual a nota de corte para abranger 75% dos candidatos para uma
     segunda fase?
 
 **Dica** empregue `round()` para arredondar o valor para pontos inteiros
 
 **Dica** veja que a nota de corte permite que mais alunos participem da
-segunda fase. É, portanto, em geral um valor abaixo da média!
+segunda fase. É, portanto, em geral um valor abaixo da média\!
 
 **Solução**
 
@@ -135,6 +138,6 @@ plot(density(rchisq(n=1000,df=20)),main='Chi 2')
 plot(density(rt(n=1000,df=10)),main='t-Student')
 ```
 
-![](PEA_Aula4_exercicios_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](PEA_Aula4_exercicios_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 **Solução**

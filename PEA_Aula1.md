@@ -1,7 +1,11 @@
-Probabilidade, Estatística e Introdução ao R
-============================================
+Probabilidade e Estatística - Aula 1
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Probabilidade, Estatística e Introdução ao R
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
@@ -15,8 +19,7 @@ linguagens de programação. Você aprenderá como acessar grandes conjuntos
 de dados, a fazer seleções de instâncias e atributos de interesse, e
 obter estatísticas básicas sobre esses dados.
 
-Introdução
-----------
+## Introdução
 
 Probabilidade e estatística são uma base importante para diferentes os
 campos da ciência da computação, engenharias, tecnologia da informação e
@@ -34,8 +37,7 @@ linguagem de código aberto (*open source*) com uma série de recursos
 para Análise de Dados, incluindo funções estatísticas e de visualização
 dos dados, e de amplo uso no mercado em diversas áreas.
 
-Introdução ao R
----------------
+## Introdução ao R
 
 Aqui você terá uma introdução à linguagem R e ao ambiente R Studio. É
 esperado que você tenha nesse ponto já tenha familiaridade com alguma
@@ -61,10 +63,10 @@ Semelhante a outros editores de linguagem de programação você encontra
 no RStudio uma barra de opções (arquivo, edit, code, view, …) e áreas de
 trabalho:
 
--   Uma área para edição dos programas
--   Uma console para comandos e saídas dos programas
--   Uma área de arquivos, plots etc.
--   Uma área de objetos, onde você pode inspecionar o estado de suas
+  - Uma área para edição dos programas
+  - Uma console para comandos e saídas dos programas
+  - Uma área de arquivos, plots etc.
+  - Uma área de objetos, onde você pode inspecionar o estado de suas
     variáveis
 
 ### Help
@@ -171,7 +173,7 @@ print(my_var2)
 
     ## [1] 4
 
-Observe que o R é sensível a maiúsculas e minúsculas! Assim:
+Observe que o R é sensível a maiúsculas e minúsculas\! Assim:
 
 ``` r
 My_var = 5
@@ -538,13 +540,13 @@ análogas às outras linguagens inclusive na sintaxe:
 
     if(cond) expr
     if(cond) cons.expr  else  alt.expr
-
+    
     for(var in seq) expr
-
+    
     while(cond) expr
-
+    
     repeat expr
-
+    
     break
     next
 
@@ -569,21 +571,22 @@ for(n in c(2,5,10,20,50)) {
 }
 ```
 
-    ## 2: 2.837266
-    ## 5: 5.165463
-    ## 10: 4.777939
-    ## 20: 31.96489
-    ## 50: 50.33835
+    ## 2: 0.5184416
+    ## 5: 3.453126
+    ## 10: 7.925354
+    ## 20: 8.914608
+    ## 50: 44.50321
 
 ``` r
 f = factor(sample(letters[1:5], 10, replace = TRUE))
 for(i in unique(f)) print(i)
 ```
 
-    ## [1] "b"
-    ## [1] "a"
-    ## [1] "e"
     ## [1] "d"
+    ## [1] "e"
+    ## [1] "a"
+    ## [1] "c"
+    ## [1] "b"
 
 ``` r
 a = 5; b = 6
@@ -622,8 +625,7 @@ tem mais do que o suficiente para prosseguir no uso do R. E você ainda
 pode acessar a [documentação do
 R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html).
 
-Dataframes
-----------
+## Dataframes
 
 Uma das formas mais comuns de tratarmos dados em R são os dataframes. O
 dataframes são tabelas de dados semelhantes às que você encontra em um
@@ -1158,15 +1160,14 @@ summary(surveys)
     ##                                                                             
     ## 
 
-Referências
------------
+## Referências
 
 Devore, Jay L. **Probabilidade e Estatística para Engenharia e
 Ciências**. Trad. Solange Aparecida Visconte. Cengage, 2018.
 
 Navarro, Danielle, **Learning Statistics with R**, disponível em:
-<a href="https://learningstatisticswithr.com/" class="uri">https://learningstatisticswithr.com/</a>
-( LSR version 0.6 (pdf) ). Acesso: 26/02/2021.
+<https://learningstatisticswithr.com/> ( LSR version 0.6 (pdf) ).
+Acesso: 26/02/2021.
 
 Wickham, H., Grolemund, G. **R for Data Science**. O’Reilly Media, Inc.,
 2016.

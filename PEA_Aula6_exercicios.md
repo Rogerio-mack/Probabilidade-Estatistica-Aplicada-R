@@ -1,13 +1,16 @@
-Testes de Hipóteses
-===================
+Probabilidade e Estatística - Aula 6
+================
+Rogério de Oliveira
+2021-05-24
 
-------------------------------------------------------------------------
+# Testes de Hipóteses
+
+-----
 
 <img src="http://meusite.mackenzie.br/rogerio/mackenzie_logo/UPM.2_horizontal_vermelho.jpg"  width=300, align="right">
 <br> <br> <br> <br> <br>
 
-Exercícios
-----------
+## Exercícios
 
 Lembrando aqui os exemplos empregados no inicío, sobre intervalos de
 confiança, para variância conhecida da população e não conhecida (uso de
@@ -98,15 +101,16 @@ help(ToothGrowth)
 
 **Solução**
 
-1.  Altere o nível de confiança para 98%. O resultado é o que você
+2.  Altere o nível de confiança para 98%. O resultado é o que você
     esperava? O que você observa, o intervalo é maior ou menor?
     (lembre-se de que você vai empregar uma distribuição bilateral)
 
 **Solução**
 
-1.  Para o mesmo problema gere um gráfico com os valores de E (o tamanho
-    do intervalo /2) para os intervalos de nível de confiança de 50% a
-    99%. Qual o erro para 98%?
+3.  Para o mesmo problema gere um gráfico com os valores de E (o tamanho
+    do intervalo ![/ 2](https://latex.codecogs.com/png.latex?%2F%202
+    "/ 2")) para os intervalos de nível de confiança de 50% a 99%. Qual
+    o erro para 98%?
 
 **Solução**
 
@@ -180,9 +184,9 @@ para obter os valores.
 
 **Solução**
 
-1.  Considere agora as amostras:
+2.  Considere agora as amostras:
 
-<!-- -->
+<!-- end list -->
 
     x = rnorm(25, mean = 100, sd = 10);  
     y = rnorm(25, mean = 101, sd = 10)
@@ -207,12 +211,16 @@ for (i in 1:100){
 }
 ```
 
-    ## [1] 0.01117514
-    ## [1] 0.02586614
-    ## [1] 0.0128719
-    ## [1] 0.0359551
-    ## [1] 0.0283068
-    ## [1] 0.01636715
+    ## [1] 0.04316117
+    ## [1] 0.03532186
+    ## [1] 0.03497957
+    ## [1] 0.02828183
+    ## [1] 0.0002476728
+    ## [1] 0.03799085
+    ## [1] 0.005391543
+    ## [1] 0.02902354
+    ## [1] 0.04421303
+    ## [1] 0.03645008
 
 ``` r
 plot(log(p),col='blue')
@@ -224,11 +232,11 @@ text(50,log(0.07),'p-values acima de 0.05... Aceita Hipótese nula, médias igua
 text(50,log(0.03),'p-values abaixo de 0.05... Aceita Hipótese alternativa, médias diferentes')
 ```
 
-![](PEA_Aula6_exercicios_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](PEA_Aula6_exercicios_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
-1.  Considere agora as amostras:
+3.  Considere agora as amostras:
 
-<!-- -->
+<!-- end list -->
 
     x = rnorm(25, mean = 100, sd = 2.5);  
     y = rnorm(25, mean = 101, sd = 2.5)
@@ -289,7 +297,7 @@ head(CPS85)
 
 **Solução**
 
-1.  Empregue o teste de hipóteses para responder se os ganhos (`wage`)
+2.  Empregue o teste de hipóteses para responder se os ganhos (`wage`)
     de casados é significativamente maior que dos solteiros.
 
 **Dica** Empregue o `t.test()`. Note que aqui o teste é unilateral.
@@ -370,11 +378,11 @@ head(houses)
 
 **Solução**
 
-1.  A função `t.test()` apresenta uma forma de automaticamente separar
-    dois (apenas dois!) conjuntos de valores em um dataframe empregando
+2.  A função `t.test()` apresenta uma forma de automaticamente separar
+    dois (apenas dois\!) conjuntos de valores em um dataframe empregando
     a fórmula:
 
-<!-- -->
+<!-- end list -->
 
     Atributo_test ~ Atributo_grupo
 
