@@ -16,6 +16,12 @@ Rogério de Oliveira
 
 Considere a base.
 
+``` r
+# install.packages("mosaicData")
+data(CPS85 , package = "mosaicData")
+head(CPS85)
+```
+
 1.  Faça um histograma e gráficos de caixa de `educ` e `expr`. Existem
     outliers para que valores?
 
@@ -105,11 +111,16 @@ Dica: você pode querer empregar `plot(density(...),...)` no lugar do
 
 Considere a base.
 
+```{r}
+df = read.csv('http://meusite.mackenzie.br/rogerio/TIC/mystocksn.csv')
+head(df)
+```
+
 1.  Produza o gráfico:
 
-<!-- end list -->
-
+```{r}
     boxplot(DOLAR ~ data, data=df)
+```
 
 Por quê o gráfico aparentemente não exibe os quartis de cada data?
 
