@@ -1,0 +1,27 @@
+
+Errata eBook PEA
+
+Trilha 1.
+
+Trilha 2.
+
+Outliers e distância inter-quartis. (grato ao aluno Emerson Amaral da Silva)
+Corrigido o código abaixo que empregava a média no lugar dos quantiles:
+print(Cars93[ (Cars93$Price > quantile(Cars93$Price, probs=c(.75)) + 1.5*iqr) | (Cars93$Price < quantile(Cars93$Price, probs=c(.25)) - 1.5*iqr), ])
+
+Trilha 3.
+
+Exercícios 1 e 3. (grato ao Prof. Jamil)
+23.08.2021 Acesse o enunciado corrigido com as bases de dados: 
+https://github.com/Rogerio-mack/Probabilidade-Estatistica-Aplicada-R/blob/main/PEA_Aula3_exercicios.md
+
+Trilha 4.
+
+Trilha 5.
+
+Trilha 6.
+
+Trilha 7.
+
+Trilha 8.
+
